@@ -1,0 +1,49 @@
+import { renderToString } from "react-dom/server";
+import { createElement } from "react";
+import htm from "htm";
+
+const html = htm.bind(createElement);
+
+// Single source of truth for logos using htm
+export const logosHtm = {
+  nearform: html`<img
+    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTODiKxPSWQzaep57CVW9j3x3n4iIlZkZLOZA&s"
+    style=${{ width: "0.9em", height: "0.9em", marginBottom: "-0.05em" }}
+  />`,
+};
+
+// Convert htm components to raw HTML strings using React's renderToString
+export const logos = Object.fromEntries(
+  Object.entries(logosHtm).map(([key, component]) => [
+    key,
+    renderToString(component).replace(/\n/g, ""),
+  ]),
+);
+
+export const images = {
+  // TODO: NEED QR CODE.
+  // Relative to index.html
+  // qrCode: "./images/qr-code.png",
+};
+
+const UNSPLASH_QUERY =
+  "q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+
+export const backgrounds = {
+  chesapeakeBay: `https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2017/09/12/1134/Hyatt-Regency-Chesapeake-Bay-Golf-Resort-Spa-and-Marina-P210-Resort-at-Sunset.jpg/Hyatt-Regency-Chesapeake-Bay-Golf-Resort-Spa-and-Marina-P210-Resort-at-Sunset.16x9.jpg?imwidth=1920`,
+  vintageComputer: `https://images.unsplash.com/photo-1711346105258-bbb9136592d7?${UNSPLASH_QUERY}`,
+  hi: `https://images.unsplash.com/reserve/oIpwxeeSPy1cnwYpqJ1w_Dufer%20Collateral%20test.jpg?${UNSPLASH_QUERY}`,
+  spectacle: `https://nearform.com/open-source/spectacle/assets/images/background-banner-88f6cfec65b38cc314fc2aaf1ad84484.png`,
+  history: `https://images.unsplash.com/photo-1501139083538-0139583c060f?${UNSPLASH_QUERY}`,
+  floppies: `https://images.unsplash.com/photo-1550221927-f7e52256370b?${UNSPLASH_QUERY}`,
+  darkSand: `https://images.unsplash.com/photo-1533134486753-c833f0ed4866?${UNSPLASH_QUERY}`,
+  skyscrapers: `https://images.unsplash.com/photo-1449157291145-7efd050a4d0e?${UNSPLASH_QUERY}`,
+  mopop: `https://images.unsplash.com/photo-1508858648555-ba5da0be9511?${UNSPLASH_QUERY}`,
+  fireworks: `https://images.unsplash.com/photo-1498931299472-f7a63a5a1cfa?${UNSPLASH_QUERY}`,
+  fireworksMinimal: `https://images.unsplash.com/photo-1532874527472-cf690743dc78?${UNSPLASH_QUERY}`,
+  fire: `https://images.unsplash.com/photo-1517594422361-5eeb8ae275a9?${UNSPLASH_QUERY}`,
+  nuclear: `https://images.unsplash.com/photo-1630142895963-6996ae6b3a5b?${UNSPLASH_QUERY}`,
+  earth: `https://images.unsplash.com/photo-1534996858221-380b92700493?${UNSPLASH_QUERY}`,
+  boxingGloves: `https://images.unsplash.com/photo-1583473848882-f9a5bc7fd2ee?${UNSPLASH_QUERY}`,
+  brickWall: `https://images.unsplash.com/photo-1546709843-e35cf3d3002d?${UNSPLASH_QUERY}`,
+};

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
+    />
+    <style>
+      /* HACK: hack off generated class names */
+      .enpNOd > code {
+        color: #aaa; /* grey[30] */
+      }
+      /* HACK: Code pane font size */
+      /* .sc-iHGNWf pre {
+        font-size: 18px !important;
+      } */
+    </style>
+    <title>AI vs. The Law</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "htm": "https://esm.sh/htm@^3?external=react,react-dom",
+          "spectacle": "https://esm.sh/spectacle@10?external=react,react-dom&bundle",
+          "broadcast-channel": "https://esm.sh/broadcast-channel@^4.17.0?external=react,react-dom",
+          "history": "https://esm.sh/history@^5.3.0?external=react,react-dom",
+          "kbar": "https://esm.sh/kbar@0.1.0-beta.40?external=react,react-dom",
+          "lodash.clonedeep": "https://esm.sh/lodash.clonedeep@^4.5.0?external=react,react-dom",
+          "mdast-builder": "https://esm.sh/mdast-builder@^1.1.1?external=react,react-dom",
+          "mdast-zone": "https://esm.sh/mdast-zone@^4.0.0?external=react,react-dom",
+          "merge-anything": "https://esm.sh/merge-anything@^3.0.3?external=react,react-dom",
+          "mousetrap": "https://esm.sh/mousetrap@^1.6.5?external=react,react-dom",
+          "query-string": "https://esm.sh/query-string@^7.1.3?external=react,react-dom",
+          "react": "https://esm.sh/react@18.2.0?",
+          "react/jsx-runtime": "https://esm.sh/react@18.2.0/jsx-runtime?",
+          "react-dom": "https://esm.sh/react-dom@18.2.0?",
+          "react-dom/client": "https://esm.sh/react-dom@18.2.0/client?",
+          "react-dom/server": "https://esm.sh/react-dom@18.2.0/server?",
+          "react-fast-compare": "https://esm.sh/react-fast-compare@^3.2.0?external=react,react-dom",
+          "react-is": "https://esm.sh/react-is@^18.1.0?external=react,react-dom",
+          "react-spring": "https://esm.sh/react-spring@^9.5.5?external=react,react-dom",
+          "react-swipeable": "https://esm.sh/react-swipeable@^7.0.0?external=react,react-dom",
+          "react-syntax-highlighter": "https://esm.sh/react-syntax-highlighter@^15.5.0?external=react,react-dom",
+          "react-syntax-highlighter/dist/cjs/styles/prism/vs-dark.js": "https://esm.sh/react-syntax-highlighter@^15.5.0/dist/esm/styles/prism/vs-dark.js?external=react,react-dom",
+          "react-syntax-highlighter/dist/cjs/styles/prism/index.js": "https://esm.sh/react-syntax-highlighter@^15.5.0/dist/esm/styles/prism/index.js?external=react,react-dom",
+          "rehype-raw": "https://esm.sh/rehype-raw@^5.1.0?external=react,react-dom",
+          "rehype-react": "https://esm.sh/rehype-react@^6.0.0?external=react,react-dom",
+          "remark-parse": "https://esm.sh/remark-parse@^8.0.3?external=react,react-dom",
+          "remark-rehype": "https://esm.sh/remark-rehype@^7.0.0?external=react,react-dom",
+          "styled-components": "https://esm.sh/styled-components@^5.3.6?external=react,react-dom",
+          "styled-system": "https://esm.sh/styled-system@5.1.5?external=react,react-dom",
+          "unified": "https://esm.sh/unified@^9.0.0?external=react,react-dom",
+          "unist-util-visit": "https://esm.sh/unist-util-visit@^2.0.3?external=react,react-dom",
+          "use-resize-observer": "https://esm.sh/use-resize-observer@^9.0.2?external=react,react-dom"
+        }
+      }
+    </script>
+    <script type="module">
+      import { Fragment, createElement } from "react";
+      import { createRoot } from "react-dom/client";
+      import { renderToString } from "react-dom/server";
+      import htm from "htm";
+      import {
+        FlexBox,
+        Heading,
+        UnorderedList,
+        CodeSpan,
+        OrderedList,
+        ListItem,
+        Appear,
+        Slide,
+        Deck,
+        Text,
+        Link,
+        FitText,
+        Grid,
+        Box,
+        Image,
+        CodePane,
+        MarkdownSlide,
+        MarkdownSlideSet,
+        Notes,
+        DefaultTemplate,
+        SlideLayout,
+        SpectacleLogo,
+      } from "spectacle";
+
+      import { theme, colors } from "./deck/theme.js";
+      import { logos, logosHtm, backgrounds, images } from "./deck/media.js";
+      const html = htm.bind(createElement);
+
+      // Components, helpers.
+      const icon = (args) => {
+        const { name, fill = true } =
+          typeof args === "object" ? args : { name: args };
+        return `<i class="ph${fill ? "-fill" : ""} ph-${name}"></i>`;
+      };
+      const iconArrow = icon({ name: "arrow-right", fill: false });
+      const IconHtm = ({ name, fill = true }) =>
+        html`<i class="ph${fill ? "-fill" : ""} ph-${name}"></i>`;
+      const IconLink = ({ name, href, fill = false, color }) => html`
+        <a href=${href} style=${{ color, textDecoration: "none" }}
+          ><${IconHtm} name=${name} fill=${fill}
+        /></a>
+      `;
+      const mdEmphasis = (text) =>
+        `<span style="color: ${theme.colors.secondary};">${text}</span>`;
+
+      const template = html` <${DefaultTemplate} />`;
+
+      // The presentation deck.
+      const Presentation =
+        () => html`<${Deck} theme=${theme} template=${template}>
+          <${Slide}>
+            <${FlexBox} height="100%" flexDirection="column">
+              <${Heading} fontSize="140px" style=${{ margin: "0" }}>
+                AI vs. THE LAW
+              </${Heading}>
+              <hr style=${{ width: "80%", margin: "20px 0" }} />
+              <${Heading} fontSize="h2" color="h2">
+                <${IconHtm} name="file-js" /> JSConf 2025
+              </${Heading}>
+            </${FlexBox}>
+          </${Slide}>
+          <!-- TODO: JSCONF BACKGROUND IMAGE -->
+          <${Slide}
+            backgroundImage="url(${backgrounds.chesapeakeBay})"
+            backgroundOpacity=${0.6}
+            backgroundColor="${colors.basics.black}"
+          >
+            <${FlexBox} height="100%" flexDirection="column" justifyContent="center" alignItems="center">
+              <${Heading} fontSize="150px" color="primary">
+                <${IconHtm} name="heart" /> JSConf
+              </${Heading}>
+            </${FlexBox}>
+          </${Slide}>
+          <${Slide} backgroundImage="url(${backgrounds.spectacle})">
+            <${FlexBox} height="100%" flexDirection="column" justifyContent="center" alignItems="center">
+              <${Link} href="https://nearform.com/open-source/spectacle">
+                <${SpectacleLogo} size=${400} />
+              </${Link}>
+              <${Text} fontSize="h3">
+                <${Link}
+                  href="https://nearform.com/open-source"
+                  color="rgb(252, 105, 134)"
+                  textDecoration="none"
+                >
+                  nearform.com/open-source
+                </${Link}>
+              </${Text}>
+            </${FlexBox}>
+          </${Slide}>
+          <${Slide}>
+            <${FlexBox} flexDirection="column" alignSelf="center" justifyContent="left" alignItems="left">
+              <${Heading} fontSize="h1" color="secondary">
+                Hi!
+              </${Heading}>
+              <${Text} fontSize="h3">
+                <${IconHtm} name="hand-waving" /> I'm Ryan Roemer
+              </${Text}>
+              <${Text} fontSize="h3">
+                ${logosHtm.nearform} I lead technology & OSS at <${Link} href="https://nearform.com" fontSize="h3">Nearform</${Link}>
+              </${Text}>
+              <${Text} fontSize="h3">
+                TODO: LAW STUFF
+              </${Text}>
+            </${FlexBox}>
+          </${Slide}>
+          <${MarkdownSlideSet} animateListItems=${true}>
+            ${`
+              ---
+              # TODO: SLIDES
+
+            `}
+          </${MarkdownSlideSet}>
+          <${MarkdownSlideSet}>
+            ${`
+              ---
+              # TODO: Presentation and repo links.
+            
+              ---
+
+              # Thanks!
+
+              ${icon("github-logo")} [ryan-roemer](https://github.com/ryan-roemer/)
+              ${icon("linkedin-logo")} [in/ryanroemer](https://www.linkedin.com/in/ryanroemer/)
+              ${icon("butterfly")} [@ryan-roemer.bsky.social](https://bsky.app/profile/ryan-roemer.bsky.social)
+              ${icon("envelope")} [ryan.roemer@nearform.com](mailto:ryan.roemer@nearform.com)
+
+              <!--
+              ${icon("twitter-logo")} [@ryan_roemer](https://x.com/ryan_roemer)
+              // TODO: NEED QR CODE.
+              <img src=${images.qrCode} width="200px" style="margin: 0 40px; margin-top: calc(25vh);" />
+              -->
+            `}
+          </${MarkdownSlideSet}>
+        </${Deck}>
+      `;
+
+      const root = createRoot(document.getElementById("root"));
+      root.render(html`<${Presentation} />`);
+    </script>
+  </body>
+</html>
