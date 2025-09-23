@@ -139,7 +139,7 @@
               className="react-live-editor"
               style=${{
                 minHeight: "300px",
-                maxHeight: "400px",
+                maxHeight: "300px",
               }}
             />
             <${LiveError}
@@ -147,6 +147,10 @@
             />
             <${LivePreview}
               className="react-live-preview"
+              style=${{
+                minHeight: "50px",
+                maxHeight: "50px",
+              }}
             />
           </div>
         </${LiveProvider}>
@@ -217,10 +221,11 @@
               TODO: CODE
             </${Heading}>
             <${CodeEditor}
-              code=${`// AI vs. The Law - Live Code Editor
-function TODO_REMOVE() {
+              code=${`// Coding exercise!
+function solution() {
+  // Return your answer here.
   return (
-    <div>Hi</div>
+    <div>Either JSX or JS string is fine here!</div>
   );
 }`}
             />
