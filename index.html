@@ -52,6 +52,7 @@
           "react-fast-compare": "https://esm.sh/react-fast-compare@^3.2.0?external=react,react-dom",
           "react-is": "https://esm.sh/react-is@^18.1.0?external=react,react-dom",
           "react-live": "https://esm.sh/react-live@^4.1.8?external=react,react-dom",
+          "prism-react-renderer": "https://esm.sh/prism-react-renderer@^2.3.1?external=react,react-dom",
           "react-spring": "https://esm.sh/react-spring@^9.5.5?external=react,react-dom",
           "react-swipeable": "https://esm.sh/react-swipeable@^7.0.0?external=react,react-dom",
           "react-syntax-highlighter": "https://esm.sh/react-syntax-highlighter@^15.5.0?external=react,react-dom",
@@ -104,6 +105,7 @@
         LiveError,
         LiveProvider,
       } from "react-live";
+      import { themes } from "prism-react-renderer";
 
       import { theme, colors } from "./deck/theme.js";
       import { logos, logosHtm, backgrounds, images } from "./deck/media.js";
@@ -133,6 +135,7 @@
         <${LiveProvider}
           code=${code}
           language="javascript"
+          theme=${themes.vsDark}
         >
           <div className="code-editor-container">
             <${LiveEditor}
@@ -236,6 +239,9 @@ function solution() {
               ---
               # TODO: SLIDES
 
+              \`\`\`javascript
+              // TODO: NORMAL SPECTACLE CODE
+              \`\`\`
             `}
           </${MarkdownSlideSet}>
           <${MarkdownSlideSet}>
