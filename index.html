@@ -219,41 +219,38 @@
               </${Text}>
             </${FlexBox}>
           </${Slide}>
-          <${Slide}>
-            <${Heading} fontSize="h3">
-              TODO: CODE
-            </${Heading}>
-            <${CodeEditor}
-              code=${`// Coding exercise!
-function solution() {
-  // Return your answer here.
-  return (
-    <div>Either JSX or JS string is fine here!</div>
-  );
-}`}
-            />
-          </${Slide}>
-
-          <${MarkdownSlideSet} animateListItems=${true}>
-            ${`
-              ---
-              # TODO: SLIDES
-
-              \`\`\`javascript
-              // TODO: NORMAL SPECTACLE CODE
-              function solution() {
-                // Return your answer here.
-                return (
-                  <div>Either JSX or JS string is fine here!</div>
-                );
-              }
-              \`\`\`
-            `}
-          </${MarkdownSlideSet}>
           <${MarkdownSlideSet}>
             ${`
               ---
               # TODO: Presentation and repo links.
+
+              ---
+              # Roadmap
+
+              \`\`\`markdown
+              - [ ] HOOK: Coding example and submission for later!
+              - [ ] INPUTS - Training Data & Fair Use
+                - [ ] Self-help: Cloudflare + RSL, Bots
+              - [ ] OUTPUTS - Ownership of AI-Generated Content
+                - [ ] Ownership discussion
+                  - [ ] HOOK: JS coding example - **same** code, but AI vs human generating.
+                - [ ] Accidentally producing copyrighted content (GPL)
+                - [ ] OSS projects dealing with flood of AI-assisted PRs
+              - [ ] The Evolving Definition of "Open Source" in AI
+                - [ ] Open weights
+                - [ ] Open data
+                - [ ] OSI standards.
+                - [ ] Open "source"?
+              \`\`\`
+
+              ---
+              # SECTION - Training Data & Fair Use
+
+              ---
+              # SECTION - Ownership of AI-Generated Content
+
+              ---
+              # SECTION - The Evolving Definition of "Open Source" in AI
 
               ---
 
@@ -269,6 +266,24 @@ function solution() {
               // TODO: NEED QR CODE.
               <img src=${images.qrCode} width="200px" style="margin: 0 40px; margin-top: calc(25vh);" />
               -->
+            `}
+          </${MarkdownSlideSet}>
+          <${Slide}>
+            <${Heading} fontSize="h3">
+              TODO: CODE
+            </${Heading}>
+            <${CodeEditor}
+              code=${`function TODO() { return "CODE STUFF" }`}
+            />
+          </${Slide}>
+          <${MarkdownSlideSet} animateListItems=${true}>
+            ${`
+              ---
+              # TODO: SLIDES
+
+              \`\`\`javascript
+              /* TODO: CODE STUFF */
+              \`\`\`
             `}
           </${MarkdownSlideSet}>
         </${Deck}>
