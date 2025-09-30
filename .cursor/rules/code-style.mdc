@@ -1,6 +1,6 @@
 ---
 description: General code style and formatting guidelines
-globs: ["**/*.js", "**/*.ts", "**/*.html", "**/*.css"]
+globs: **/*.js,**/*.html,**/*.css
 alwaysApply: true
 ---
 

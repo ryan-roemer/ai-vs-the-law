@@ -1,6 +1,6 @@
 ---
 description: Spectacle presentation component guidelines and styling rules
-globs: ["**/*.js", "**/*.ts", "**/deck/**", "**/examples/**"]
+globs: **/*.js,**/*.html,**/*.css
 alwaysApply: false
 ---
 

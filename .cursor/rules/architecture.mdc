@@ -1,6 +1,6 @@
 ---
 description: Project architecture and file organization guidelines
-globs: ["**/*.js", "**/*.ts", "**/*.html"]
+globs: **/*.js,**/*.html,**/*.css
 alwaysApply: false
 ---
 

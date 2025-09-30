@@ -1,6 +1,6 @@
 ---
 description: Guidelines for maintaining a build-free development experience
-globs: ["**/*.js", "**/*.ts", "**/*.html", "**/examples/**"]
+globs: **/*.js,**/*.html,**/*.css
 alwaysApply: true
 ---
 
