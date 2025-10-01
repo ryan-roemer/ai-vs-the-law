@@ -6,9 +6,11 @@ const findLicense = async () => {
   const pkg = JSON.parse(await fs.readFile(pkgPath, "utf8"));
   const { license } = pkg;
 
-  const { licenses } = await fetch(
+  const response = await fetch(
     "https://raw.githubusercontent.com/spdx/license-list-data/refs/heads/main/json/licenses.json",
-  ).then((res) => res.json());
+  )
+  const { licenses } = await response.json();
+
   const licenseName = licenses.find((l) => l.licenseId === license)?.name;
   if (licenseName) {
     console.log(`Found ${license}. Full name: ${licenseName}`);
