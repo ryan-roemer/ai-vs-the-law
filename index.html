@@ -226,15 +226,25 @@
               </${Text}>
             </${FlexBox}>
           </${Slide}>
-          <${MarkdownSlide}>
+          <${MarkdownSlideSet}>
             ${`
+              ---
               # ... but today
 
               * Former IP and patent attorney
               * [mofo.com](https://mofo.com)
               * Interested in the collision of code and law.
+
+              ---
+              # Roadmap
+
+              * Copyright law
+              * Inputs
+              * Outputs
+              * Open source
+
             `}
-          </${MarkdownSlide}>
+          </${MarkdownSlideSet}>
           <${MarkdownSlideSet} animateListItems=${true}>
             ${`
               ---
@@ -338,9 +348,9 @@
                   * Commercial, not transformative (1)
                   * Directly harmed Westlaw's market (4)
               * In appeals.
-              * Takeaway: Uh oh.
 
               <!--
+              * TAKEAWAY: Uh oh.
               * https://www.bakerlaw.com/thomson-reuters-v-ross/
               -->
 
@@ -352,6 +362,7 @@
               * Various in flight developments.
 
               <!--
+              TODO: REMOVE???
               * George RR Martin, Sarah Silverman, Michael Chabon, John Grisham, Scott Turow, etc.
               * https://www.bakerlaw.com/in-re-openai-inc-copyright-infringement-litigation/
               -->
@@ -359,11 +370,11 @@
               ---
               # Bartz v. Anthropic (ND Cal)
 
-              * Claude training data. Gathered from (1) allowed online source, (2) pirated sources, and (3) buying and scanning books.
-              * June 23: District court finding that:
+              * Claude training data gathered from (1) allowed online sources, (2) pirated sources, and (3) buying and scanning books.
+              * June 23: District court ruling:
                 * Non-pirated sources are fair use. Exceedingly "transformative" use. (1)
                 * Pirated sources are not fair use. Market harm. (4)
-              * Sept. 25: [Preliminary approval](https://www.dailyjournal.com/articles/387788-judge-grants-preliminary-approval-of-1-5b-anthropic-ai-copyright-case)
+              * Sept. 25: $1.5 billion settlement with [preliminary approval](https://www.dailyjournal.com/articles/387788-judge-grants-preliminary-approval-of-1-5b-anthropic-ai-copyright-case)
 
               ---
               # Kadrey v. Meta Platforms (ND Cal)
@@ -379,19 +390,19 @@
               -->
 
               ---
-              # Takeaways
-
-              * The courts are split on fair use and this is all going to evolve.
-              * The cautious course is to gather data without pirating.
-                * But you don't need necessarily need permission.
-
-              ---
               # Scraping
 
               * _Reddit vs. Anthropic_ (ND Cal) ${iconArrow} Anthropic says it's not scraping, but Reddit says it is.
               * CloudFlare's AI [bot protections](https://blog.cloudflare.com/declaring-your-aindependence-block-ai-bots-scrapers-and-crawlers-with-a-single-click/)
               * [Really Simple Licensing (RSL)](https://rslstandard.org/): Reddit, Stack Overflow,
                 [Fastly](https://www.fastly.com/blog/control-and-monetize-your-content-with-the-rsl-standard), etc.
+
+              ---
+              # Takeaways
+
+              * The courts are split on fair use and this is all going to evolve.
+              * The cautious course is to gather data without pirating.
+              * You don't need necessarily need permission, but we're seeing more paths and programs.
 
               ---
               # SECTION - Ownership of AI-Generated Content
