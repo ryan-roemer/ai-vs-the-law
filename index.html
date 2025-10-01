@@ -113,11 +113,18 @@
 
       // Components, helpers.
       const icon = (args) => {
-        const { name, fill = true } =
-          typeof args === "object" ? args : { name: args };
-        return `<i class="ph${fill ? "-fill" : ""} ph-${name}"></i>`;
+        const {
+          name,
+          fill = true,
+          color,
+        } = typeof args === "object" ? args : { name: args };
+        return `<i class="ph${fill ? "-fill" : ""} ph-${name}" ${color ? `style="color: ${color}"` : ""}></i>`;
       };
-      const iconArrow = icon({ name: "arrow-right", fill: false });
+      const iconArrow = icon({
+        name: "arrow-right",
+        fill: false,
+        color: theme.colors.quaternary,
+      });
       const IconHtm = ({ name, fill = true }) =>
         html`<i class="ph${fill ? "-fill" : ""} ph-${name}"></i>`;
       const IconLink = ({ name, href, fill = false, color }) => html`
@@ -125,7 +132,7 @@
           ><${IconHtm} name=${name} fill=${fill}
         /></a>
       `;
-      const mdEmphasis = (text) =>
+      const em = (text) =>
         `<span style="color: ${theme.colors.secondary};">${text}</span>`;
 
       // TODO: CHECK OPTS AND CLEAN UP
@@ -215,49 +222,34 @@
                 ${logosHtm.nearform} I lead technology & OSS at <${Link} href="https://nearform.com" fontSize="h3">Nearform</${Link}>
               </${Text}>
               <${Text} fontSize="h3">
-                TODO: I'm normally a geek...
+                I'm normally a geek...
               </${Text}>
             </${FlexBox}>
           </${Slide}>
-          <${Slide}>
-            <${FlexBox} flexDirection="column" alignSelf="center" justifyContent="left" alignItems="left">
-              <!-- TODO(GLOBAL): Sentence case all headings? -->
-              <${Heading} fontSize="h1" color="secondary">
-                ... but today
-              </${Heading}>
-              <${Text} fontSize="h3">
-                TODO: IP and patent attorney
-              </${Text}>
-              <${Text} fontSize="h3">
-                TODO: <${Link} href="https://mofo.com" fontSize="h3">mofo.com</${Link}>
-              </${Text}>
-              <${Text} fontSize="h3">
-                TODO: OTHER STUFF
-              </${Text}>
-            </${FlexBox}>
-          </${Slide}>
-          <${MarkdownSlideSet}>
+          <${MarkdownSlide}>
             ${`
               ---
-              # TODO: Presentation and repo links.
+              # ... but today
 
+              * Happily former IP and patent attorney
+              * [mofo.com](https://mofo.com)
+              * Interested in the collision of code and law.
+            `}
+          </${MarkdownSlide}>
+          <${MarkdownSlideSet} animateListItems=${true}>
+            ${`
               ---
               # Admonitions & Disclaimers
 
-              \`\`\`markdown
-              - [ ] IAAL, but IAAIL and most importantly IANYL
-              - [ ] Talk to your own legal team
-                - [ ] Your legal team is trying to figure it out too.
-              - [ ] This is evolving quickly.
-              \`\`\`
+              * ${em("IAAL")}, but ${em("IAAIL")} and most importantly ${em("IANYL")}
+              * Talk to your own legal team
+              * This is evolving quickly.
 
-              ---
+              <!--- ---
               # Roadmap
 
               \`\`\`markdown
               - [ ] HOOK: Coding example and submission for later!
-              - [ ] INPUTS - Training Data & Fair Use
-                - [ ] Self-help: Cloudflare + RSL, Bots
               - [ ] OUTPUTS - Ownership of AI-Generated Content
                 - [ ] Ownership discussion
                   - [ ] HOOK: JS coding example - **same** code, but AI vs human generating.
@@ -270,54 +262,138 @@
                 - [ ] Open "source"?
               \`\`\`
 
+              -->
+
               --- { "layout": "center" }
-              # Inputs
+              # Law Stuff
 
               ---
-              ## Training Data & Fair Use
+              # Copyright law
 
-              * **Question**: What materials are you allowed to train on?
-              * **Impacts**:
-                  * The world of data and audit controls on your data ingestion pipeline.
-                  * Which models and tools you will be allowed to use.
+              * A valid copyright protects the ${em("original")} (creative) expression of a work.
+              * Provides exclusive rights to:
+                   * ${em("reproduction")}
+                   * distribution
+                   * preparation of "${em("derivative works")}"
 
-              ---
-              # Speedrunning Copyright Law
-
-              * A valid copyright, protects the original (creative) expression of a work.
-              * Copyright provides exclusive rights to reproduce, distribute, and prepare "derivative works".
-                  * Reproduce: direct evidence or access + striking similarity.
-                  * Prepare "derivative works": must still incorporate the underlying original expression.
+              <!--
+              * Reproduce: direct evidence or access + striking similarity.
+              * Prepare "derivative works": must still incorporate the underlying original expression.
+              -->
 
               ---
               ## Fair Use
 
-              Fair use is a **defense** to copyright infringment.
+              A **defense** to copyright infringment. ([17 U.S. Code § 107](https://www.law.cornell.edu/uscode/text/17/107))
 
-              1. The purpose and character of the use. (Commercial? Transformative?)
-              2. The nature of the copyrighted work. (Factual? Creative?)
-              3. The amount and substantiality of the portion used.
-              4. The effect on the market value of the original work.
+              1. the ${em("purpose")} and ${em("character")} of the use, ...;
+                * _Commercial? Educational? Transformative?_
+              2. the ${em("nature")} of the copyrighted work;
+                * _Factual? Creative?_
 
+              ---
+              ## Fair Use
+              3. the ${em("amount")} and substantiality of the portion used in relation to the ... whole; and
+              4. the effect of the use upon the ${em("market value")} of the copyrighted work.
+
+              <!-- TODO: Aside on OSS licensing here -->
+
+              --- { "layout": "center" }
+              # Inputs
+
+              ---
+              ## Training Data
+
+              What materials are you allowed to train on?
+              * ${em("Public domain")} works?
+              * ${em("Open source")} works?
+              * Private ${em("copyrighted")} works?
+              * Does ${em("how")} you collect the data matter?
+
+              ---
+              ## Training Data
+
+              Why this matters:
+              * Which ${em("models")} and ${em("tools")} you will be allowed to use.
+              * How you will be able to ${em("gather")} and ${em("use")} data for your own ML/AI projects.
 
               ---
               ## Training Data Litigation
 
-              * Anthropic litigation: _Bartz v. Anthropic_ (ND Cal)
-              * Thomson Reuters v. ROSS Intelligence
-              * _Kadrey v. Meta Platforms_ (ND Cal)
-              * The New York Times v. Microsoft & OpenAI
-              * In re OpenAI ChatGPT Litigation (the cases, Paul Tremblay v. OpenAI, Inc., Sarah Silverman v. OpenAI, Inc., and Chabon v. OpenAI)
-              *
+              * _Thomson Reuters v. ROSS Intelligence_ (D Del)
+              * _In re OpenAI Litigation_ ${iconArrow} OpenAI, MSFT.
+              * _Bartz v. Anthropic_ (ND Cal) ${iconArrow} Claude
+              * _Kadrey v. Meta Platforms_ (ND Cal) ${iconArrow} Llama
 
+              <!--
               Articles
               * https://www.skadden.com/insights/publications/2025/07/fair-use-and-ai-training
               * https://www.mckoolsmith.com/newsroom-ailitigation-12
+              -->
 
               ---
-              ## Anthropic
+              # Thomson Reuters v. ROSS (D Del)
 
-              * [Anthropic settlement approved](https://www.nytimes.com/2025/09/05/technology/anthropic-settlement-copyright-ai.html)
+              * ROSS used Westlaw headnotes to train its AI legal search engine.
+              * 2025: Infringement and no fair use
+                  * Commercial, not transformative (1)
+                  * Directly harmed Westlaw's market (4)
+              * In appeals.
+              * Takeaway: Uh oh.
+
+              <!--
+              * https://www.bakerlaw.com/thomson-reuters-v-ross/
+              -->
+
+              ---
+              # In re OpenAI Litigation
+
+              * Plaintiffs: News companies, authors, etc.
+              * Defendants: OpenAI, MSFT.
+              * Various in flight developments.
+
+              <!--
+              * George RR Martin, Sarah Silverman, Michael Chabon, John Grisham, Scott Turow, etc.
+              * https://www.bakerlaw.com/in-re-openai-inc-copyright-infringement-litigation/
+              -->
+
+              ---
+              # Bartz v. Anthropic (ND Cal)
+
+              * Claude training data. Gathered from (1) allowed online source, (2) pirated sources, and (3) buying and scanning books.
+              * June 23: District court finding that:
+                * Non-pirated sources are fair use. Exceedingly "transformative" use. (1)
+                * Pirated sources are not fair use. Market harm. (4)
+              * Sept. 25: [Preliminary approval](https://www.dailyjournal.com/articles/387788-judge-grants-preliminary-approval-of-1-5b-anthropic-ai-copyright-case)
+
+              ---
+              # Kadrey v. Meta Platforms (ND Cal)
+
+              * Llama training data. Pirated sources.
+              * June 25: Fair use.
+                * Transformative (1)
+                * No market harm. (4)
+              * Limited to specific plaintiffs. Nod to _Bartz_.
+
+              <!--
+              * https://www.bakerlaw.com/kadrey-v-meta-platforms-inc-llama-fair-use-litigation/
+              -->
+
+              ---
+              # Takeaways
+
+              * The courts are split on fair use and this is all going to evolve.
+              * The cautious course is to gather data without pirating.
+                * But you don't need necessarily need permission.
+
+              ---
+              # Scraping
+
+              * _Reddit vs. Anthropic_ (ND Cal) ${iconArrow} Anthropic says it's not scraping, but Reddit says it is.
+              * CloudFlare's AI [bot protections](https://blog.cloudflare.com/declaring-your-aindependence-block-ai-bots-scrapers-and-crawlers-with-a-single-click/)
+              * [Really Simple Licensing (RSL)](https://rslstandard.org/): Reddit, Stack Overflow,
+                [Fastly](https://www.fastly.com/blog/control-and-monetize-your-content-with-the-rsl-standard), etc.
+
               ---
               # SECTION - Ownership of AI-Generated Content
 
