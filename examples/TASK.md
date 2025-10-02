@@ -2,7 +2,8 @@ Create a JS file "index.js" that:
 
 - Runs: `node /PATH/TO/index.js /PATH/TO/package.json`
 - Reads `package.json` license field
-- Fetches SPDX data from `https://raw.githubusercontent.com/spdx/license-list-data/refs/heads/main/json/licenses.json`
+- Fetches SPDX data from
+  `https://raw.githubusercontent.com/spdx/license-list-data/refs/heads/main/json/licenses.json`
 - Matches license against `licenseId` in `licenses` array
 - Outputs: `Found {license}. Full name: {name}` or `Could not find {license}.`
 
