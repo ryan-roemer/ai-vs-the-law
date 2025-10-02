@@ -1,5 +1,4 @@
 Create a JS file "index.js" that:
-
 - Runs: `node /PATH/TO/index.js /PATH/TO/package.json`
 - Reads `package.json` license field
 - Fetches SPDX data from
@@ -8,7 +7,6 @@ Create a JS file "index.js" that:
 - Outputs: `Found {license}. Full name: {name}` or `Could not find {license}.`
 
 Requirements:
-
 - ESM with `import`
 - No extra logging or error handling
 - Use `async/await`, `fetch`, `fs/promises`

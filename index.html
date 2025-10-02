@@ -25,6 +25,16 @@
       href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
     />
     <link rel="stylesheet" type="text/css" href="./deck/styles.css" />
+    <style>
+      /* HACK: hack off generated class names */
+      .enpNOd > code {
+        color: #aaa; /* grey[30] */
+      }
+      /* HACK: Code pane font size */
+      .sc-iHGNWf pre {
+        font-size: 18px !important;
+      }
+    </style>
     <title>AI vs. The Law</title>
   </head>
   <body>
@@ -138,6 +148,13 @@
       `;
       const em = (text) =>
         `<span style="color: ${theme.colors.secondary};">${text}</span>`;
+
+      const JsSlide = ({ title, code }) => html`
+        <${Slide}>
+          <${Heading} fontSize="h3" style=${{ margin: "0" }}>${title}</${Heading}>
+          <${CodePane} language="javascript" showLineNumbers=${true} >${code}</${CodePane}>
+        </${Slide}>
+      `;
 
       // TODO: CHECK OPTS AND CLEAN UP
       // <${LivePreview} />
@@ -420,7 +437,6 @@
               --- { "layout": "center" }
               # Outputs
 
-
               ---
               # Outputs
 
@@ -449,7 +465,13 @@
               ${examples.task.code.split("\n").join("\n              ")}
               \`\`\`
 
-              ---
+            `}
+          </${MarkdownSlideSet}>
+          <${JsSlide} title="Example 1" code=${examples.cursor.code} />
+          <${JsSlide} title="Example 2" code=${examples.human.code} />
+          <${JsSlide} title="Example 3" code=${examples.copilot.code} />
+          <${MarkdownSlideSet} animateListItems=${true}>
+            ${`
               # SECTION - The Evolving Definition of "Open Source" in AI
 
               \`\`\`markdown
