@@ -7,4 +7,14 @@ export default [
   },
   js.configs.recommended,
   eslintConfigPrettier,
+  {
+    files: ["examples/**/*.js"],
+    languageOptions: {
+      globals: {
+        console: "readonly",
+        process: "readonly",
+        fetch: "readonly",
+      },
+    },
+  },
 ];

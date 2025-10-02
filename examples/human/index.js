@@ -1,4 +1,3 @@
-/* global fetch:false,process:false,console:false */
 import fs from "fs/promises";
 
 const findLicense = async () => {
@@ -8,7 +7,7 @@ const findLicense = async () => {
 
   const response = await fetch(
     "https://raw.githubusercontent.com/spdx/license-list-data/refs/heads/main/json/licenses.json",
-  )
+  );
   const { licenses } = await response.json();
 
   const licenseName = licenses.find((l) => l.licenseId === license)?.name;
