@@ -30,9 +30,8 @@ export const logos = Object.fromEntries(
 );
 
 export const images = {
-  // TODO: NEED QR CODE.
   // Relative to index.html
-  // qrCode: "./images/qr-code.png",
+  qrCode: "./images/qr-code-ai-vs-law-square.svg",
 };
 
 const UNSPLASH_QUERY =

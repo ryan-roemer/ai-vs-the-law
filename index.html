@@ -459,7 +459,58 @@
                 * Especially in OSS.
 
               ---
+              # Ownership of AI outputs
+
+              Is the code you create with AI assistance protected by copyright?
+              * If you use tab completions, inline chat?
+              * How about a full IDE chat or CLI tool?
+
+              ---
+              ## Ownership of AI outputs
+
+              Why this matters:
+              * You might care about copyright ownership (OSS protections, etc.)
+              * Your company probably cares about it.
+
+              ---
+              ## Legal developments in AI-assisted outputs
+
+              * _Thaler v. Perlmutter_ (D DC)
+              * US Copyright Office second report
+
+              ---
+              # Thaler v. Perlmutter (D DC)
+
+              * Image copyright registration
+              * With an AI as the "author"
+              * 2025 holding: US Copyright Act requires human authorship.
+
+              ---
+              # US Copyright Office - 2nd report
+
+              [Report](https://www.copyright.gov/ai/Copyright-and-Artificial-Intelligence-Part-2-Copyrightability-Report.pdf) (2025)
+
+              \`\`\`markdown
+              * Purely AI-generated content is not protected by copyright.
+              * Prompts and instructions alone are not sufficient.
+                * "prompts may reflect a user's mental conception or idea, but they do not control the way that idea is expressed"
+                * "Repeatedly revising prompts does not change this analysis or provide a sufficient basis for claiming copyright in the output"
+              * But human control of "selection and placement" of the "creative elements" may be.
+                * But _only_ the human contributions.
+              \`\`\`
+
+              --- { "layout": "center" }
+              # And now for a break
+
+              ## Let's write some code!
+
+              ---
               # A coding exercise!
+
+              Write a JS CLI tool to translate a package.json license to a full license name.
+
+              ---
+              # The exercise
 
               \`\`\`markdown
               ${examples.task.code.split("\n").join("\n              ")}
@@ -472,6 +523,30 @@
           <${JsSlide} title="Example 3" code=${examples.copilot.code} />
           <${MarkdownSlideSet} animateListItems=${true}>
             ${`
+              ---
+              # A coding exercise!
+
+              What are the differences between these?
+
+              ---
+              # Spec Driven Development
+
+              How about SDD?
+
+              \`\`\`javascript
+              // GENERATED FROM SPEC - DO NOT EDIT
+              // @generated with <TOOL> v0.22.1 from ../web-app/backend-api.spec.md
+              // (spec:b499c242) (code:ab3f180f)
+              \`\`\`
+
+              ---
+              # Takeaways
+
+              * The cautious approach is involve and bias _direct_ human creation of code.
+              * Assess if it's OK to have some of your code lack copyright protection.
+              * There's a huge collision between how the lawyers are leaning and what's happening in the engineering world.
+
+              ---
               # SECTION - The Evolving Definition of "Open Source" in AI
 
               \`\`\`markdown
@@ -482,8 +557,29 @@
                 - [ ] What are the analogies here?
               - [ ] Assessment: this is more something for the community than it is a legal issue to be resolved in court.
               \`\`\`
+--- { "layout" : "columns" }
 
-              ---
+              ::section
+
+              # References
+
+              ${icon("browser")} See the deck at:
+              [ryan-roemer.github.io/ai-vs-the-law](https://ryan-roemer.github.io/ai-vs-the-law/)
+
+              ${icon("github-logo")} ...and check out the code at:
+              [ryan-roemer/ai-vs-the-law](https://github.com/ryan-roemer/ai-vs-the-law)
+
+              ::section
+
+              <img src=${images.qrCode} width="200px" style="margin: 0 40px; margin-top: calc(25vh); border: 5px solid #fff;" />
+
+              Notes: \
+                You've probable guessed the spoiler here...\
+                This Spectacle deck is a no-build React application that uses htm!
+
+              --- { "layout": "columns" }
+
+              ::section
 
               # Thanks!
 
@@ -494,9 +590,12 @@
 
               <!--
               ${icon("twitter-logo")} [@ryan_roemer](https://x.com/ryan_roemer)
-              // TODO: NEED QR CODE.
-              <img src=${images.qrCode} width="200px" style="margin: 0 40px; margin-top: calc(25vh);" />
               -->
+
+              ::section
+
+              <img src=${images.qrCode} width="200px" style="margin: 0 40px; margin-top: calc(25vh); border: 5px solid #fff;" />
+
             `}
           </${MarkdownSlideSet}>
           <${MarkdownSlideSet} animateListItems=${true}>
