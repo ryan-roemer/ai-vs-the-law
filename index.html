@@ -470,31 +470,6 @@
           <${JsSlide} title="Example 1" code=${examples.cursor.code} />
           <${JsSlide} title="Example 2" code=${examples.human.code} />
           <${JsSlide} title="Example 3" code=${examples.copilot.code} />
-          <${Slide}>
-            <${Heading} fontSize="h3" style=${{ margin: "0" }}>
-              TODO: CODE
-            </${Heading}>
-            <${CodeEditor}
-              code=${`
-                function TODO() {
-                  const pkgUrl = "https://raw.githubusercontent.com/ryan-roemer/ai-vs-the-law/refs/heads/main/package.json";
-                  const spdxUrl = "https://raw.githubusercontent.com/spdx/license-list-data/refs/heads/main/json/licenses.json";
-                  // const [pkg, setPkg] = React.useState(null);
-                  // const [spdx, setSpdx] = React.useState(null);
-
-                  // React.useEffect(async () => {
-                  //   setPkg(await (await fetch(pkgUrl).catch(()=>{})).json());
-                  //   setSpdx(await (await fetch(spdxUrl)).json());
-                  // }, []);
-
-                  // const licName = spdx?.licenses.find((l) => l.licenseId === pkg?.license)?.name;
-                  // return licName ? \`Found \${pkg.license}. Full name: \${licName}\` : "Could not find license.";
-                }
-              `
-                .replace(/\n                /g, "\n")
-                .trim()}
-            />
-          </${Slide}>
           <${MarkdownSlideSet} animateListItems=${true}>
             ${`
               # SECTION - The Evolving Definition of "Open Source" in AI
@@ -542,3 +517,33 @@
     </script>
   </body>
 </html>
+
+<!-- TODO: REMOVE (PARKING LOT)
+
+          <${Slide}>
+            <${Heading} fontSize="h3" style=${{ margin: "0" }}>
+              TODO: CODE
+            </${Heading}>
+            <${CodeEditor}
+              code=${`
+                function TODO() {
+                  const pkgUrl = "https://raw.githubusercontent.com/ryan-roemer/ai-vs-the-law/refs/heads/main/package.json";
+                  const spdxUrl = "https://raw.githubusercontent.com/spdx/license-list-data/refs/heads/main/json/licenses.json";
+                  // const [pkg, setPkg] = React.useState(null);
+                  // const [spdx, setSpdx] = React.useState(null);
+
+                  // React.useEffect(async () => {
+                  //   setPkg(await (await fetch(pkgUrl).catch(()=>{})).json());
+                  //   setSpdx(await (await fetch(spdxUrl)).json());
+                  // }, []);
+
+                  // const licName = spdx?.licenses.find((l) => l.licenseId === pkg?.license)?.name;
+                  // return licName ? \`Found \${pkg.license}. Full name: \${licName}\` : "Could not find license.";
+                }
+              `
+                .replace(/\n                /g, "\n")
+                .trim()}
+            />
+          </${Slide}>
+
+-->
