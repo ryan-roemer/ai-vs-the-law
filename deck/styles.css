@@ -10,13 +10,18 @@
 .react-live-editor {
   background: rgb(30, 30, 30); /* match PRR theme */
   font-family: Inconsolata, Monaco, Consolas, "Courier New", Courier, monospace;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.5;
   padding: 16px;
   border: none;
   outline: none;
   resize: none;
   overflow: auto;
+}
+
+.react-live-editor > pre {
+  text-wrap-mode: nowrap !important;
+  white-space: nowrap !important;
 }
 
 .react-live-preview {
