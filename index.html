@@ -245,15 +245,24 @@
               </${Text}>
             </${FlexBox}>
           </${Slide}>
+          <${Slide}>
+            <${FlexBox} flexDirection="column" alignSelf="center" justifyContent="left" alignItems="left">
+              <${Heading} fontSize="h1" color="secondary">
+                ... but today
+              </${Heading}>
+              <${Text} fontSize="h3">
+                <${IconHtm} name="scales" /> Former IP and patent attorney
+              </${Text}>
+              <${Text} fontSize="h3">
+                ${logosHtm.mofo} I worked at <${Link} href="https://mofo.com" fontSize="h3">MoFo</${Link}>
+              </${Text}>
+              <${Text} fontSize="h3">
+                <${IconHtm} name="fire" /> Keep an eye on code vs. law
+              </${Text}>
+            </${FlexBox}>
+          </${Slide}>
           <${MarkdownSlideSet}>
             ${`
-              ---
-              # ... but today
-
-              * Former IP and patent attorney
-              * [mofo.com](https://mofo.com)
-              * Interested in the collision of code and law.
-
               ---
               # Roadmap
 
@@ -447,8 +456,14 @@
               # Infringing AI Outputs
 
               * A big concern in the early days of GitHub Copilot.
+                  * _Doe(s) v. GitHub Inc._ (ND Cal)
                   * Now has [features](https://resources.github.com/learn/pathways/copilot/essentials/how-github-copilot-handles-data/) to try and prevent.
               * Separate tools for auditing and prevention. ([Socket](https://socket.dev/blog/socket-license-analysis), [Black Duck](https://www.blackduck.com/software-composition-analysis-tools/open-source-scanning.html), etc.)
+
+              <!--
+              * https://www.bakerlaw.com/the-copilot-litigation/
+              * https://www.legal.io/articles/5516216/Judge-Throws-Out-Majority-of-Claims-in-GitHub-Copilot-Lawsuit
+              -->
 
               ---
               # Takeaways

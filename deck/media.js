@@ -10,6 +10,16 @@ export const logosHtm = {
     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTODiKxPSWQzaep57CVW9j3x3n4iIlZkZLOZA&s"
     style=${{ width: "0.9em", height: "0.9em", marginBottom: "-0.05em" }}
   />`,
+  mofo: html`<img
+    src="/images/mofo-icon.png"
+    style=${{
+      width: "0.9em",
+      height: "0.9em",
+      marginBottom: "-0.05em",
+      backgroundColor: "#fff",
+      border: "5px solid #fff",
+    }}
+  />`,
   js: html`<img
     src="https://events.linuxfoundation.org/wp-content/uploads/2024/11/js_logo_white-1.svg"
     style=${{
