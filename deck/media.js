@@ -54,6 +54,7 @@ export const backgrounds = {
   gavelBook: `https://images.unsplash.com/photo-1618771623063-6c3faa854a61?${UNSPLASH_QUERY}`,
   bookStacks: `https://images.unsplash.com/photo-1550399105-c4db5fb85c18?${UNSPLASH_QUERY}`,
   greenCode: `https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?${UNSPLASH_QUERY}`,
+  typing: `https://images.unsplash.com/photo-1560092269-eaeb3c5e74ba?${UNSPLASH_QUERY}`,
 
   // Previous
   vintageComputer: `https://images.unsplash.com/photo-1711346105258-bbb9136592d7?${UNSPLASH_QUERY}`,

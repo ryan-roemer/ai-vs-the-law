@@ -26,6 +26,11 @@
     />
     <link rel="stylesheet" type="text/css" href="./deck/styles.css" />
     <style>
+      .notes * {
+        padding: 0 !important;
+        line-height: 1 !important;
+        font-size: 20px !important;
+      }
       /* HACK: hack off generated class names */
       .enpNOd > code {
         color: #aaa; /* grey[30] */
@@ -102,6 +107,7 @@
         Box,
         Image,
         CodePane,
+        Markdown,
         MarkdownSlide,
         MarkdownSlideSet,
         Notes,
@@ -124,6 +130,8 @@
 
       const examples = await getExamples();
       console.log(examples);
+
+      const ANIMATE_LIST_ITEMS = {}; // TODO { animateListItems: true };
 
       // Components, helpers.
       const icon = (args) => {
@@ -198,9 +206,15 @@
         ...rest
       }) => html`
         <${Slide}
-          backgroundOpacity=${0.4}
-          backgroundColor="${colors.basics.black}"
-          ...${backgroundUrl ? { backgroundImage: `url(${backgroundUrl})` } : {}}
+          ...${
+            backgroundUrl
+              ? {
+                  backgroundImage: `url(${backgroundUrl})`,
+                  backgroundOpacity: 0.4,
+                  backgroundColor: colors.basics.black,
+                }
+              : {}
+          }
           ...${rest}
         >
           <${FlexBox} height="100%" flexDirection="column" alignSelf="center" justifyContent="center" alignItems="center">
@@ -275,7 +289,7 @@
               </${Text}>
             </${FlexBox}>
           </${Slide}>
-          <${Slide} animateListItems=${true}>
+          <${Slide} ...${ANIMATE_LIST_ITEMS}>
             <${FlexBox} flexDirection="column" alignSelf="center" justifyContent="left" alignItems="left">
               <${Heading} fontSize="h1" color="secondary">
                 ... but today
@@ -297,9 +311,9 @@
               </${Appear}>
             </${FlexBox}>
             <${Notes}>
-              <ul>
-                <li>MoFo respresents Anthropic (Bartz), OpenAI (In re OpenAI).</li>
-              </ul>
+              <${Markdown} className="notes">
+                * MoFo respresents Anthropic (Bartz), OpenAI (In re OpenAI).
+              </${Markdown}>
             </${Notes}>
           </${Slide}>
           <${Slide}>
@@ -316,7 +330,7 @@
               </${Grid}>
             </${FlexBox}>
           </${Slide}>
-          <${MarkdownSlideSet} animateListItems=${true}>
+          <${MarkdownSlideSet} ...${ANIMATE_LIST_ITEMS}>
             ${`
               ---
               # Admonitions & disclaimers
@@ -331,7 +345,7 @@
           <${TopicSlide} backgroundUrl=${backgrounds.gavelBook}>
             Law Stuff
           </${TopicSlide}>
-          <${MarkdownSlideSet} animateListItems=${true}>
+          <${MarkdownSlideSet} ...${ANIMATE_LIST_ITEMS}>
             ${`
               ---
               # Copyright law
@@ -369,7 +383,20 @@
           <${TopicSlide} backgroundUrl=${backgrounds.bookStacks}>
             Inputs
           </${TopicSlide}>
-          <${MarkdownSlideSet} animateListItems=${true}>
+          <${MarkdownSlideSet} ...${ANIMATE_LIST_ITEMS}>
+            ${`
+              ---
+              # Inputs
+
+              * What are you allowed to input into an AI system?
+              * How about for ${em("scraping")}?
+
+            `}
+          </${MarkdownSlideSet}>
+          <${TopicSlide}>
+            Training data
+          </${TopicSlide}>
+          <${MarkdownSlideSet} ...${ANIMATE_LIST_ITEMS}>
             ${`
 
               ---
@@ -451,6 +478,13 @@
               * https://www.bakerlaw.com/kadrey-v-meta-platforms-inc-llama-fair-use-litigation/
               -->
 
+            `}
+          </${MarkdownSlideSet}>
+          <${TopicSlide}>
+            Scraping
+          </${TopicSlide}>
+          <${MarkdownSlideSet} ...${ANIMATE_LIST_ITEMS}>
+            ${`
               ---
               # Scraping
 
@@ -458,9 +492,15 @@
               * CloudFlare's AI [bot protections](https://blog.cloudflare.com/declaring-your-aindependence-block-ai-bots-scrapers-and-crawlers-with-a-single-click/)
               * [Really Simple Licensing (RSL)](https://rslstandard.org/): Reddit, Stack Overflow,
                 [Fastly](https://www.fastly.com/blog/control-and-monetize-your-content-with-the-rsl-standard), etc.
-
+            `}
+          </${MarkdownSlideSet}>
+          <${TopicSlide}>
+            Takeaways
+          </${TopicSlide}>
+          <${MarkdownSlideSet} ...${ANIMATE_LIST_ITEMS}>
+            ${`
               ---
-              # Takeaways
+              # Inputs: Takeaways
 
               * The courts are split on fair use and this is all going to evolve.
               * The cautious course is to gather data without pirating.
@@ -471,14 +511,20 @@
           <${TopicSlide} backgroundUrl=${backgrounds.greenCode}>
             Outputs
           </${TopicSlide}>
-          <${MarkdownSlideSet} animateListItems=${true}>
+          <${MarkdownSlideSet} ...${ANIMATE_LIST_ITEMS}>
             ${`
               ---
               # Outputs
 
               * What happens when AI produces copyrighted content/code?
               * Can AI-generated content be protected by copyright?
-
+            `}
+          </${MarkdownSlideSet}>
+          <${TopicSlide}>
+            <${IconHtm} name="copyright" fill=${false} /> Infringement
+          </${TopicSlide}>
+          <${MarkdownSlideSet} ...${ANIMATE_LIST_ITEMS}>
+            ${`
               ---
               # Infringing AI Outputs
 
@@ -493,13 +539,19 @@
               -->
 
               ---
-              # Takeaways
+              # Infringement: Takeaways
 
               * Developers have to be more careful with AI-generated code.
               * Real questions about IP ownership of AI-generated code.
               * Practical concerns and wrangling with the flood of AI-generated code.
                 * Especially in OSS.
-
+            `}
+          </${MarkdownSlideSet}>
+          <${TopicSlide}>
+            <${IconHtm} name="copyright" fill=${false} /> Ownership
+          </${TopicSlide}>
+          <${MarkdownSlideSet} ...${ANIMATE_LIST_ITEMS}>
+            ${`
               ---
               # Ownership of AI outputs
 
@@ -508,44 +560,64 @@
               * How about a full IDE chat or CLI tool?
 
               ---
-              ## Ownership of AI outputs
+              # Ownership of AI outputs
 
               Why this matters:
               * You might care about copyright ownership (OSS protections, etc.)
-              * Your company probably cares about it.
+              * Your ${em("company")} probably cares about it.
 
-              ---
-              ## Legal developments in AI-assisted outputs
-
-              * _Thaler v. Perlmutter_ (D DC)
-              * US Copyright Office second report
+              Notes: \
+                We'll discuss two developments: \
+                Thaler v. Perlmutter (D DC), US Copyright Office second report.
 
               ---
               # Thaler v. Perlmutter (D DC)
 
               * Image copyright registration
               * With an AI as the "author"
-              * 2025 holding: US Copyright Act requires human authorship.
-
-              ---
-              # US Copyright Office - 2nd report
-
-              [Report](https://www.copyright.gov/ai/Copyright-and-Artificial-Intelligence-Part-2-Copyrightability-Report.pdf) (2025)
-
-              \`\`\`markdown
-              * Purely AI-generated content is not protected by copyright.
-              * Prompts and instructions alone are not sufficient.
-                * "prompts may reflect a user's mental conception or idea, but they do not control the way that idea is expressed"
-                * "Repeatedly revising prompts does not change this analysis or provide a sufficient basis for claiming copyright in the output"
-              * But human control of "selection and placement" of the "creative elements" may be.
-                * But _only_ the human contributions.
-              \`\`\`
-
-              --- { "layout": "center" }
-              # And now for a break
-
-              ## Let's write some code!
-
+              * Holding (2025): US Copyright Act requires human authorship.
+            `}
+          </${MarkdownSlideSet}>
+          <${Slide}>
+            <${FlexBox} height="100%" flexDirection="column" justifyContent="top" alignItems="center">
+              <${Heading} fontSize="h1" color="secondary">
+                US Copyright Office - <a
+                  href="https://www.copyright.gov/ai/Copyright-and-Artificial-Intelligence-Part-2-Copyrightability-Report.pdf"
+                  style=${{ color: theme.colors.quaternary }}
+                >
+                  2nd report
+                </a>
+              </${Heading}>
+              <${UnorderedList}>
+                <${ListItem}>
+                  Purely AI-generated content is not protected by copyright.
+                </${ListItem}>
+                <${ListItem}>
+                  Prompts and instructions alone are not sufficient.
+                </${ListItem}>
+                <${ListItem}>
+                  But human control of "selection and placement" of the "creative elements" may be.
+                </${ListItem}>
+              </${UnorderedList}>
+            </${FlexBox}>
+            <${Notes}>
+              <${Markdown} className="notes">
+                ${`
+                  * Purely AI-generated content is not protected by copyright.
+                  * Prompts and instructions alone are not sufficient.
+                    * "prompts may reflect a user's mental conception or idea, but they do not control the way that idea is expressed"
+                    * "Repeatedly revising prompts does not change this analysis or provide a sufficient basis for claiming copyright in the output"
+                  * But human control of "selection and placement" of the "creative elements" may be.
+                    * But _only_ the human contributions.
+                `}
+              </${Markdown}>
+            </${Notes}>
+          </${Slide}>
+          <${TopicSlide} backgroundUrl=${backgrounds.typing}>
+            A coding break
+          </${TopicSlide}>
+          <${MarkdownSlideSet} ...${ANIMATE_LIST_ITEMS}>
+            ${`
               ---
               # A coding exercise!
 
@@ -563,7 +635,7 @@
           <${JsSlide} title="Example 1" code=${examples.cursor.code} />
           <${JsSlide} title="Example 2" code=${examples.human.code} />
           <${JsSlide} title="Example 3" code=${examples.copilot.code} />
-          <${MarkdownSlideSet} animateListItems=${true}>
+          <${MarkdownSlideSet} ...${ANIMATE_LIST_ITEMS}>
             ${`
               ---
               # A coding exercise!
@@ -582,7 +654,7 @@
               \`\`\`
 
               ---
-              # Takeaways
+              # Onwership: Takeaways
 
               * The cautious approach is involve and bias _direct_ human creation of code.
               * Assess if it's OK to have some of your code lack copyright protection.
