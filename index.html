@@ -282,45 +282,29 @@
               </ul>
             </${Notes}>
           </${Slide}>
-          <${MarkdownSlideSet}>
-            ${`
-              ---
-              # Roadmap
-
-              * Copyright law
-              * Inputs
-              * Outputs
-              * Open source
-
-            `}
-          </${MarkdownSlideSet}>
+          <${Slide}>
+            <${Heading}>Roadmap</${Heading}>
+            <${FlexBox} justifyContent="center" alignItems="center" height="70%">
+              <${Grid} gridTemplateColumns="1fr 1fr" gridTemplateRows="1fr 1fr" gridGap="30px">
+                ${["Copyright law", "Inputs", "Outputs", "The future"].map(
+                  (title, i) => html`
+                    <${Box} key=${i} border="5px solid #fff" padding="30px" borderRadius="8px">
+                      <${Text} color="secondary" fontSize="3em" textAlign="center">${title}</${Text}>
+                    </${Box}>
+                  `,
+                )}
+              </${Grid}>
+            </${FlexBox}>
+          </${Slide}>
           <${MarkdownSlideSet} animateListItems=${true}>
             ${`
               ---
               # Admonitions & Disclaimers
 
               * ${em("IAAL")}, but ${em("IAAIL")} and most importantly ${em("IANYL")}
+              * Raise awareness, not provide answers or advice
               * Talk to your own legal team
-              * This is evolving quickly.
-
-              <!--- ---
-              # Roadmap
-
-              \`\`\`markdown
-              - [ ] HOOK: Coding example and submission for later!
-              - [ ] OUTPUTS - Ownership of AI-Generated Content
-                - [ ] Ownership discussion
-                  - [ ] HOOK: JS coding example - **same** code, but AI vs human generating.
-                - [ ] Accidentally producing copyrighted content (GPL)
-                - [ ] OSS projects dealing with flood of AI-assisted PRs
-              - [ ] The Evolving Definition of "Open Source" in AI
-                - [ ] Open weights
-                - [ ] Open data
-                - [ ] OSI standards.
-                - [ ] Open "source"?
-              \`\`\`
-
-              -->
+              * This is evolving quickly
 
               --- { "layout": "center" }
               # Law Stuff
