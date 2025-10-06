@@ -115,17 +115,21 @@
         SlideLayout,
         SpectacleLogo,
       } from "spectacle";
-      import {
-        LiveEditor,
-        LivePreview,
-        LiveError,
-        LiveProvider,
-      } from "react-live";
       import { themes } from "prism-react-renderer";
-
       import { theme, colors } from "./deck/theme.js";
       import { logos, logosHtm, backgrounds, images } from "./deck/media.js";
       import { getExamples } from "./deck/examples.js";
+      import {
+        icon,
+        iconArrow,
+        Icon,
+        IconLink,
+        em,
+        Em,
+        JsSlide,
+        TopicSlide,
+        CodeEditor,
+      } from "./deck/components.js";
       const html = htm.bind(createElement);
 
       const examples = await getExamples();
@@ -133,98 +137,6 @@
       const ANIMATE = false;
       const AppearComponent = ANIMATE ? Appear : Fragment;
       const animateListItems = ANIMATE ? { animateListItems: true } : {};
-
-      // Components, helpers.
-      const icon = (args) => {
-        const {
-          name,
-          fill = true,
-          color,
-        } = typeof args === "object" ? args : { name: args };
-        return `<i class="ph${fill ? "-fill" : ""} ph-${name}" ${color ? `style="color: ${color}"` : ""}></i>`;
-      };
-      const iconArrow = icon({
-        name: "arrow-right",
-        fill: false,
-        color: theme.colors.quaternary,
-      });
-      const IconHtm = ({ name, fill = true }) =>
-        html`<i class="ph${fill ? "-fill" : ""} ph-${name}"></i>`;
-      const IconLink = ({ name, href, fill = false, color }) => html`
-        <a href=${href} style=${{ color, textDecoration: "none" }}
-          ><${IconHtm} name=${name} fill=${fill}
-        /></a>
-      `;
-      const em = (text) =>
-        `<span style="color: ${theme.colors.secondary};">${text}</span>`;
-      const Em = ({ children }) =>
-        html`<span style=${{ color: theme.colors.secondary }}
-          >${children}</span
-        >`;
-
-      const JsSlide = ({ title, code }) => html`
-        <${Slide}>
-          <${Heading} fontSize="h3" style=${{ margin: "0" }}>${title}</${Heading}>
-          <${CodePane} language="javascript" showLineNumbers=${true} >${code}</${CodePane}>
-        </${Slide}>
-      `;
-
-      // TODO: CHECK OPTS AND CLEAN UP
-      // <${LivePreview} />
-      // <${LiveError} />
-      const CodeEditor = ({ code }) => html`
-        <${LiveProvider}
-          code=${code}
-          language="javascript"
-          theme=${themes.vsDark}
-        >
-          <div className="code-editor-container">
-            <${LiveEditor}
-              className="react-live-editor"
-              style=${{
-                minHeight: "400px",
-                maxHeight: "400px",
-              }}
-            />
-            <${LiveError}
-              className="react-live-error"
-            />
-            <${LivePreview}
-              className="react-live-preview"
-              style=${{
-                minHeight: "50px",
-                maxHeight: "50px",
-              }}
-            />
-          </div>
-        </${LiveProvider}>
-      `;
-
-      const TopicSlide = ({
-        backgroundUrl,
-        fontSize = "8em",
-        children,
-        ...rest
-      }) => html`
-        <${Slide}
-          ...${
-            backgroundUrl
-              ? {
-                  backgroundImage: `url(${backgroundUrl})`,
-                  backgroundOpacity: 0.4,
-                  backgroundColor: colors.basics.black,
-                }
-              : {}
-          }
-          ...${rest}
-        >
-          <${FlexBox} height="100%" flexDirection="column" alignSelf="center" justifyContent="center" alignItems="center">
-            <${Heading} fontSize=${fontSize} color="primary">
-              ${children}
-            </${Heading}>
-          </${FlexBox}>
-        </${Slide}>
-      `;
 
       // The presentation deck.
       const Presentation =
@@ -248,7 +160,7 @@
           >
             <${FlexBox} height="100%" flexDirection="column" justifyContent="center" alignItems="center">
               <${Heading} fontSize="150px" color="primary">
-                <${IconHtm} name="heart" /> JSConf
+                <${Icon} name="heart" /> JSConf
               </${Heading}>
             </${FlexBox}>
           </${Slide}>
@@ -259,7 +171,7 @@
               </${Heading}>
               <${AppearComponent}>
                 <${Text} fontSize="h3">
-                  <${IconHtm} name="hand-waving" /> I'm Ryan Roemer
+                  <${Icon} name="hand-waving" /> I'm Ryan Roemer
                 </${Text}>
               </${AppearComponent}>
               <${AppearComponent}>
@@ -269,7 +181,7 @@
               </${AppearComponent}>
               <${AppearComponent}>
                 <${Text} fontSize="h3">
-                  <${IconHtm} name="eyeglasses" /> I'm normally a geek...
+                  <${Icon} name="eyeglasses" /> I'm normally a geek...
                 </${Text}>
               </${AppearComponent}>
             </${FlexBox}>
@@ -297,7 +209,7 @@
               </${Heading}>
               <${AppearComponent}>
                 <${Text} fontSize="h3">
-                  <${IconHtm} name="scales" /> Former IP & patent attorney
+                  <${Icon} name="scales" /> Former IP & patent attorney
                 </${Text}>
               </${AppearComponent}>
               <${AppearComponent}>
@@ -307,7 +219,7 @@
               </${AppearComponent}>
               <${AppearComponent}>
                 <${Text} fontSize="h3">
-                  <${IconHtm} name="fire" /> Keep an eye on <${Em}>code<//> vs. <${Em}>law<//>...
+                  <${Icon} name="fire" /> Keep an eye on <${Em}>code<//> vs. <${Em}>law<//>...
                 </${Text}>
               </${AppearComponent}>
             </${FlexBox}>
@@ -522,7 +434,7 @@
             `}
           </${MarkdownSlideSet}>
           <${TopicSlide}>
-            <${IconHtm} name="copyright" fill=${false} /> Infringement
+            <${Icon} name="copyright" fill=${false} /> Infringement
           </${TopicSlide}>
           <${MarkdownSlideSet} ...${animateListItems}>
             ${`
@@ -549,7 +461,7 @@
             `}
           </${MarkdownSlideSet}>
           <${TopicSlide}>
-            <${IconHtm} name="copyright" fill=${false} /> Ownership
+            <${Icon} name="copyright" fill=${false} /> Ownership
           </${TopicSlide}>
           <${MarkdownSlideSet} ...${animateListItems}>
             ${`
