@@ -254,12 +254,17 @@
                 <${IconHtm} name="scales" /> Former IP and patent attorney
               </${Text}>
               <${Text} fontSize="h3">
-                ${logosHtm.mofo} I worked at <${Link} href="https://mofo.com" fontSize="h3">MoFo</${Link}>
+                ${logosHtm.mofo} I was a <${Link} href="https://mofo.com" fontSize="h3">MoFo</${Link}> lawyer
               </${Text}>
               <${Text} fontSize="h3">
                 <${IconHtm} name="fire" /> Keep an eye on code vs. law
               </${Text}>
             </${FlexBox}>
+            <${Notes}>
+              <ul>
+                <li>MoFo respresents Anthropic (Bartz), OpenAI (In re OpenAI).</li>
+              </ul>
+            </${Notes}>
           </${Slide}>
           <${MarkdownSlideSet}>
             ${`
@@ -432,17 +437,6 @@
               * The cautious course is to gather data without pirating.
               * You don't need necessarily need permission, but we're seeing more paths and programs.
 
-              ---
-              # SECTION - Ownership of AI-Generated Content
-
-              \`\`\`markdown
-              - [ ] What are the rules for outputs? Producing copyrighted content?
-                - [ ] OSS licensing speedrun.
-              - [ ] Is the AI-generated content itself protected by copyright?
-                - [ ] RETURN to our original example... manual vs. AI-generated can be the same?
-                - [ ] THOUGHT: Is pure Spec Driven Development categorically unable to produce copyrighted content?
-              \`\`\`
-
               --- { "layout": "center" }
               # Outputs
 
@@ -562,17 +556,12 @@
               * There's a huge collision between how the lawyers are leaning and what's happening in the engineering world.
 
               ---
-              # SECTION - The Evolving Definition of "Open Source" in AI
+              # Just the beginning
 
-              \`\`\`markdown
-              - [ ] OSS speedrun
-                - [ ] OSI/OSD and classical OSS.
-                - [ ] Short note on commercial OSS.
-              - [ ] Open weights
-                - [ ] What are the analogies here?
-              - [ ] Assessment: this is more something for the community than it is a legal issue to be resolved in court.
-              \`\`\`
---- { "layout" : "columns" }
+              * "Open source" vs. "open weights"
+              * TODO: MORE HERE???
+
+              --- { "layout" : "columns" }
 
               ::section
 
@@ -587,10 +576,6 @@
               ::section
 
               <img src=${images.qrCode} width="200px" style="margin: 0 40px; margin-top: calc(25vh); border: 5px solid #fff;" />
-
-              Notes: \
-                You've probable guessed the spoiler here...\
-                This Spectacle deck is a no-build React application that uses htm!
 
               --- { "layout": "columns" }
 
@@ -611,16 +596,6 @@
 
               <img src=${images.qrCode} width="200px" style="margin: 0 40px; margin-top: calc(25vh); border: 5px solid #fff;" />
 
-            `}
-          </${MarkdownSlideSet}>
-          <${MarkdownSlideSet} animateListItems=${true}>
-            ${`
-              ---
-              # TODO: SLIDES
-
-              \`\`\`javascript
-              /* TODO: CODE STUFF */
-              \`\`\`
             `}
           </${MarkdownSlideSet}>
         </${Deck}>
