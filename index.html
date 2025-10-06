@@ -129,9 +129,10 @@
       const html = htm.bind(createElement);
 
       const examples = await getExamples();
-      console.log(examples);
 
-      const ANIMATE_LIST_ITEMS = {}; // TODO { animateListItems: true };
+      const ANIMATE = false;
+      const AppearComponent = ANIMATE ? Appear : Fragment;
+      const animateListItems = ANIMATE ? { animateListItems: true } : {};
 
       // Components, helpers.
       const icon = (args) => {
@@ -256,21 +257,21 @@
               <${Heading} fontSize="h1" color="secondary">
                 Hi!
               </${Heading}>
-              <${Appear}>
+              <${AppearComponent}>
                 <${Text} fontSize="h3">
                   <${IconHtm} name="hand-waving" /> I'm Ryan Roemer
                 </${Text}>
-              </${Appear}>
-              <${Appear}>
+              </${AppearComponent}>
+              <${AppearComponent}>
                 <${Text} fontSize="h3">
                   ${logosHtm.nearform} I lead technology & OSS at <${Link} href="https://nearform.com" fontSize="h3">Nearform</${Link}>
                 </${Text}>
-              </${Appear}>
-              <${Appear}>
+              </${AppearComponent}>
+              <${AppearComponent}>
                 <${Text} fontSize="h3">
                   <${IconHtm} name="eyeglasses" /> I'm normally a geek...
                 </${Text}>
-              </${Appear}>
+              </${AppearComponent}>
             </${FlexBox}>
           </${Slide}>
           <${Slide} backgroundImage="url(${backgrounds.spectacle})">
@@ -289,26 +290,26 @@
               </${Text}>
             </${FlexBox}>
           </${Slide}>
-          <${Slide} ...${ANIMATE_LIST_ITEMS}>
+          <${Slide} ...${animateListItems}>
             <${FlexBox} flexDirection="column" alignSelf="center" justifyContent="left" alignItems="left">
               <${Heading} fontSize="h1" color="secondary">
                 ... but today
               </${Heading}>
-              <${Appear}>
+              <${AppearComponent}>
                 <${Text} fontSize="h3">
                   <${IconHtm} name="scales" /> Former IP & patent attorney
                 </${Text}>
-              </${Appear}>
-              <${Appear}>
+              </${AppearComponent}>
+              <${AppearComponent}>
                 <${Text} fontSize="h3">
                   ${logosHtm.mofo} I was a <${Link} href="https://mofo.com" fontSize="h3">MoFo</${Link}> lawyer
                 </${Text}>
-              </${Appear}>
-              <${Appear}>
+              </${AppearComponent}>
+              <${AppearComponent}>
                 <${Text} fontSize="h3">
                   <${IconHtm} name="fire" /> Keep an eye on <${Em}>code<//> vs. <${Em}>law<//>...
                 </${Text}>
-              </${Appear}>
+              </${AppearComponent}>
             </${FlexBox}>
             <${Notes}>
               <${Markdown} className="notes">
@@ -330,7 +331,7 @@
               </${Grid}>
             </${FlexBox}>
           </${Slide}>
-          <${MarkdownSlideSet} ...${ANIMATE_LIST_ITEMS}>
+          <${MarkdownSlideSet} ...${animateListItems}>
             ${`
               ---
               # Admonitions & disclaimers
@@ -345,7 +346,7 @@
           <${TopicSlide} backgroundUrl=${backgrounds.gavelBook}>
             Law Stuff
           </${TopicSlide}>
-          <${MarkdownSlideSet} ...${ANIMATE_LIST_ITEMS}>
+          <${MarkdownSlideSet} ...${animateListItems}>
             ${`
               ---
               # Copyright law
@@ -383,7 +384,7 @@
           <${TopicSlide} backgroundUrl=${backgrounds.bookStacks}>
             Inputs
           </${TopicSlide}>
-          <${MarkdownSlideSet} ...${ANIMATE_LIST_ITEMS}>
+          <${MarkdownSlideSet} ...${animateListItems}>
             ${`
               ---
               # Inputs
@@ -396,7 +397,7 @@
           <${TopicSlide}>
             Training data
           </${TopicSlide}>
-          <${MarkdownSlideSet} ...${ANIMATE_LIST_ITEMS}>
+          <${MarkdownSlideSet} ...${animateListItems}>
             ${`
 
               ---
@@ -483,7 +484,7 @@
           <${TopicSlide}>
             Scraping
           </${TopicSlide}>
-          <${MarkdownSlideSet} ...${ANIMATE_LIST_ITEMS}>
+          <${MarkdownSlideSet} ...${animateListItems}>
             ${`
               ---
               # Scraping
@@ -497,7 +498,7 @@
           <${TopicSlide}>
             Takeaways
           </${TopicSlide}>
-          <${MarkdownSlideSet} ...${ANIMATE_LIST_ITEMS}>
+          <${MarkdownSlideSet} ...${animateListItems}>
             ${`
               ---
               # Inputs: Takeaways
@@ -511,7 +512,7 @@
           <${TopicSlide} backgroundUrl=${backgrounds.greenCode}>
             Outputs
           </${TopicSlide}>
-          <${MarkdownSlideSet} ...${ANIMATE_LIST_ITEMS}>
+          <${MarkdownSlideSet} ...${animateListItems}>
             ${`
               ---
               # Outputs
@@ -523,7 +524,7 @@
           <${TopicSlide}>
             <${IconHtm} name="copyright" fill=${false} /> Infringement
           </${TopicSlide}>
-          <${MarkdownSlideSet} ...${ANIMATE_LIST_ITEMS}>
+          <${MarkdownSlideSet} ...${animateListItems}>
             ${`
               ---
               # Infringing AI Outputs
@@ -550,7 +551,7 @@
           <${TopicSlide}>
             <${IconHtm} name="copyright" fill=${false} /> Ownership
           </${TopicSlide}>
-          <${MarkdownSlideSet} ...${ANIMATE_LIST_ITEMS}>
+          <${MarkdownSlideSet} ...${animateListItems}>
             ${`
               ---
               # Ownership of AI outputs
@@ -588,26 +589,22 @@
                   2nd report
                 </a>
               </${Heading}>
-              <${UnorderedList}>
-                <${ListItem}>
-                  Purely AI-generated content is not protected by copyright.
-                </${ListItem}>
-                <${ListItem}>
-                  Prompts and instructions alone are not sufficient.
-                </${ListItem}>
-                <${ListItem}>
-                  But human control of "selection and placement" of the "creative elements" may be.
-                </${ListItem}>
-              </${UnorderedList}>
+              <${Markdown}>
+                ${`
+                  * ${em("Purely AI-generated content")} is not protected.
+                  * ${em("Prompts & instructions")} alone are not sufficient.
+                  * ${em("Human control")} of "selection and placement" of the "creative elements" may be.
+                `}
+              </${Markdown}>
             </${FlexBox}>
             <${Notes}>
               <${Markdown} className="notes">
                 ${`
-                  * Purely AI-generated content is not protected by copyright.
-                  * Prompts and instructions alone are not sufficient.
+                  Prompts and instructions alone:
                     * "prompts may reflect a user's mental conception or idea, but they do not control the way that idea is expressed"
                     * "Repeatedly revising prompts does not change this analysis or provide a sufficient basis for claiming copyright in the output"
-                  * But human control of "selection and placement" of the "creative elements" may be.
+
+                  Human control:
                     * But _only_ the human contributions.
                 `}
               </${Markdown}>
@@ -615,32 +612,38 @@
           </${Slide}>
           <${TopicSlide} backgroundUrl=${backgrounds.typing}>
             A coding break
+            <${Notes}>
+              OK, enough boring law. Let's take a break and an do something more familiar.
+            </${Notes}>
           </${TopicSlide}>
-          <${MarkdownSlideSet} ...${ANIMATE_LIST_ITEMS}>
+          <${MarkdownSlideSet} ...${animateListItems}>
             ${`
               ---
-              # A coding exercise!
+              # High level
 
               Write a JS CLI tool to translate a package.json license to a full license name.
 
               ---
-              # The exercise
+              # Specifics
 
               \`\`\`markdown
               ${examples.task.code.split("\n").join("\n              ")}
               \`\`\`
+
+              <!-- TODO: Move specifics to after the code examples? -->
 
             `}
           </${MarkdownSlideSet}>
           <${JsSlide} title="Example 1" code=${examples.cursor.code} />
           <${JsSlide} title="Example 2" code=${examples.human.code} />
           <${JsSlide} title="Example 3" code=${examples.copilot.code} />
-          <${MarkdownSlideSet} ...${ANIMATE_LIST_ITEMS}>
+          <${MarkdownSlideSet} ...${animateListItems}>
             ${`
               ---
               # A coding exercise!
 
-              What are the differences between these?
+              * What are the differences between these?
+              * Extrapolate to larger pieces of code?
 
               ---
               # Spec Driven Development
@@ -653,13 +656,21 @@
               // (spec:b499c242) (code:ab3f180f)
               \`\`\`
 
+              Notes: Here, we're told to not edit the code at all!
+
               ---
               # Onwership: Takeaways
 
               * The cautious approach is involve and bias _direct_ human creation of code.
               * Assess if it's OK to have some of your code lack copyright protection.
               * There's a huge collision between how the lawyers are leaning and what's happening in the engineering world.
-
+            `}
+          </${MarkdownSlideSet}>
+          <${TopicSlide} backgroundUrl=${backgrounds.mopop}>
+            The future
+          </${TopicSlide}>
+          <${MarkdownSlideSet} ...${animateListItems}>
+            ${`
               ---
               # Just the beginning
 
