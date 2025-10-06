@@ -191,6 +191,26 @@
         </${LiveProvider}>
       `;
 
+      const TopicSlide = ({
+        backgroundUrl,
+        fontSize = "8em",
+        children,
+        ...rest
+      }) => html`
+        <${Slide}
+          backgroundOpacity=${0.4}
+          backgroundColor="${colors.basics.black}"
+          ...${backgroundUrl ? { backgroundImage: `url(${backgroundUrl})` } : {}}
+          ...${rest}
+        >
+          <${FlexBox} height="100%" flexDirection="column" alignSelf="center" justifyContent="center" alignItems="center">
+            <${Heading} fontSize=${fontSize} color="primary">
+              ${children}
+            </${Heading}>
+          </${FlexBox}>
+        </${Slide}>
+      `;
+
       // The presentation deck.
       const Presentation =
         () => html`<${Deck} theme=${theme} template=${html` <${DefaultTemplate} />`}>
@@ -299,16 +319,20 @@
           <${MarkdownSlideSet} animateListItems=${true}>
             ${`
               ---
-              # Admonitions & Disclaimers
+              # Admonitions & disclaimers
 
-              * ${em("IAAL")}, but ${em("IAAIL")} and most importantly ${em("IANYL")}
+              * ${em("IAAL")} but ${em("IANYL")} (and even there, ${em("IAAIL")})
               * Raise awareness, not provide answers or advice
               * Talk to your own legal team
               * This is evolving quickly
 
-              --- { "layout": "center" }
-              # Law Stuff
-
+            `}
+          </${MarkdownSlideSet}>
+          <${TopicSlide} backgroundUrl=${backgrounds.gavelBook}>
+            Law Stuff
+          </${TopicSlide}>
+          <${MarkdownSlideSet} animateListItems=${true}>
+            ${`
               ---
               # Copyright law
 
@@ -324,7 +348,7 @@
               -->
 
               ---
-              ## Fair Use
+              ## Fair use
 
               A **defense** to copyright infringment. ([17 U.S. Code § 107](https://www.law.cornell.edu/uscode/text/17/107))
 
@@ -334,17 +358,22 @@
                 * _Factual? Creative?_
 
               ---
-              ## Fair Use
+              ## Fair use
               3. the ${em("amount")} and substantiality of the portion used in relation to the ... whole; and
               4. the effect of the use upon the ${em("market value")} of the copyrighted work.
 
               <!-- TODO: Aside on OSS licensing here -->
 
-              --- { "layout": "center" }
-              # Inputs
+            `}
+          </${MarkdownSlideSet}>
+          <${TopicSlide} backgroundUrl=${backgrounds.bookStacks}>
+            Inputs
+          </${TopicSlide}>
+          <${MarkdownSlideSet} animateListItems=${true}>
+            ${`
 
               ---
-              ## Training Data
+              ## Training data
 
               What materials are you allowed to train on?
               * ${em("Public domain")} works?
@@ -353,14 +382,14 @@
               * Does ${em("how")} you collect the data matter?
 
               ---
-              ## Training Data
+              ## Training data
 
               Why this matters:
               * Which ${em("models")} and ${em("tools")} you will be allowed to use.
               * How you will be able to ${em("gather")} and ${em("use")} data for your own ML/AI projects.
 
               ---
-              ## Training Data Litigation
+              ## Training data litigation
 
               * _Thomson Reuters v. ROSS Intelligence_ (D Del)
               * _In re OpenAI Litigation_ ${iconArrow} OpenAI, MSFT.
@@ -437,9 +466,13 @@
               * The cautious course is to gather data without pirating.
               * You don't need necessarily need permission, but we're seeing more paths and programs.
 
-              --- { "layout": "center" }
-              # Outputs
-
+            `}
+          </${MarkdownSlideSet}>
+          <${TopicSlide} backgroundUrl=${backgrounds.greenCode}>
+            Outputs
+          </${TopicSlide}>
+          <${MarkdownSlideSet} animateListItems=${true}>
+            ${`
               ---
               # Outputs
 

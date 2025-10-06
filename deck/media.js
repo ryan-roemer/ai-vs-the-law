@@ -48,7 +48,14 @@ const UNSPLASH_QUERY =
   "q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
 export const backgrounds = {
+  // Current
   chesapeakeBay: `https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2017/09/12/1134/Hyatt-Regency-Chesapeake-Bay-Golf-Resort-Spa-and-Marina-P210-Resort-at-Sunset.jpg/Hyatt-Regency-Chesapeake-Bay-Golf-Resort-Spa-and-Marina-P210-Resort-at-Sunset.16x9.jpg?imwidth=1920`,
+  usSupremeCourt: `https://images.unsplash.com/photo-1453945619913-79ec89a82c51?${UNSPLASH_QUERY}`,
+  gavelBook: `https://images.unsplash.com/photo-1618771623063-6c3faa854a61?${UNSPLASH_QUERY}`,
+  bookStacks: `https://images.unsplash.com/photo-1550399105-c4db5fb85c18?${UNSPLASH_QUERY}`,
+  greenCode: `https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?${UNSPLASH_QUERY}`,
+
+  // Previous
   vintageComputer: `https://images.unsplash.com/photo-1711346105258-bbb9136592d7?${UNSPLASH_QUERY}`,
   hi: `https://images.unsplash.com/reserve/oIpwxeeSPy1cnwYpqJ1w_Dufer%20Collateral%20test.jpg?${UNSPLASH_QUERY}`,
   spectacle: `https://nearform.com/open-source/spectacle/assets/images/background-banner-88f6cfec65b38cc314fc2aaf1ad84484.png`,
