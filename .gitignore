@@ -22,6 +22,7 @@ coverage
 .yarn/*
 .yarnrc*
 .pnp.*
+.playwright-mcp
 
 # Config
 .env

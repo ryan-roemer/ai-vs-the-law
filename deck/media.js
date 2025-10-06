@@ -59,7 +59,7 @@ export const backgrounds = {
   // Previous
   vintageComputer: `https://images.unsplash.com/photo-1711346105258-bbb9136592d7?${UNSPLASH_QUERY}`,
   hi: `https://images.unsplash.com/reserve/oIpwxeeSPy1cnwYpqJ1w_Dufer%20Collateral%20test.jpg?${UNSPLASH_QUERY}`,
-  spectacle: `https://nearform.com/open-source/spectacle/assets/images/background-banner-88f6cfec65b38cc314fc2aaf1ad84484.png`,
+  spectacle: `https://github.com/FormidableLabs/spectacle/blob/main/website/static/img/background-banner.png?raw=true`,
   history: `https://images.unsplash.com/photo-1501139083538-0139583c060f?${UNSPLASH_QUERY}`,
   floppies: `https://images.unsplash.com/photo-1550221927-f7e52256370b?${UNSPLASH_QUERY}`,
   darkSand: `https://images.unsplash.com/photo-1533134486753-c833f0ed4866?${UNSPLASH_QUERY}`,
