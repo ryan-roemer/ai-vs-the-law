@@ -148,6 +148,10 @@
       `;
       const em = (text) =>
         `<span style="color: ${theme.colors.secondary};">${text}</span>`;
+      const Em = ({ children }) =>
+        html`<span style=${{ color: theme.colors.secondary }}
+          >${children}</span
+        >`;
 
       const JsSlide = ({ title, code }) => html`
         <${Slide}>
@@ -218,15 +222,21 @@
               <${Heading} fontSize="h1" color="secondary">
                 Hi!
               </${Heading}>
-              <${Text} fontSize="h3">
-                <${IconHtm} name="hand-waving" /> I'm Ryan Roemer
-              </${Text}>
-              <${Text} fontSize="h3">
-                ${logosHtm.nearform} I lead technology & OSS at <${Link} href="https://nearform.com" fontSize="h3">Nearform</${Link}>
-              </${Text}>
-              <${Text} fontSize="h3">
-                <${IconHtm} name="eyeglasses" /> I'm normally a geek...
-              </${Text}>
+              <${Appear}>
+                <${Text} fontSize="h3">
+                  <${IconHtm} name="hand-waving" /> I'm Ryan Roemer
+                </${Text}>
+              </${Appear}>
+              <${Appear}>
+                <${Text} fontSize="h3">
+                  ${logosHtm.nearform} I lead technology & OSS at <${Link} href="https://nearform.com" fontSize="h3">Nearform</${Link}>
+                </${Text}>
+              </${Appear}>
+              <${Appear}>
+                <${Text} fontSize="h3">
+                  <${IconHtm} name="eyeglasses" /> I'm normally a geek...
+                </${Text}>
+              </${Appear}>
             </${FlexBox}>
           </${Slide}>
           <${Slide} backgroundImage="url(${backgrounds.spectacle})">
@@ -245,20 +255,26 @@
               </${Text}>
             </${FlexBox}>
           </${Slide}>
-          <${Slide}>
+          <${Slide} animateListItems=${true}>
             <${FlexBox} flexDirection="column" alignSelf="center" justifyContent="left" alignItems="left">
               <${Heading} fontSize="h1" color="secondary">
                 ... but today
               </${Heading}>
-              <${Text} fontSize="h3">
-                <${IconHtm} name="scales" /> Former IP and patent attorney
-              </${Text}>
-              <${Text} fontSize="h3">
-                ${logosHtm.mofo} I was a <${Link} href="https://mofo.com" fontSize="h3">MoFo</${Link}> lawyer
-              </${Text}>
-              <${Text} fontSize="h3">
-                <${IconHtm} name="fire" /> Keep an eye on code vs. law
-              </${Text}>
+              <${Appear}>
+                <${Text} fontSize="h3">
+                  <${IconHtm} name="scales" /> Former IP & patent attorney
+                </${Text}>
+              </${Appear}>
+              <${Appear}>
+                <${Text} fontSize="h3">
+                  ${logosHtm.mofo} I was a <${Link} href="https://mofo.com" fontSize="h3">MoFo</${Link}> lawyer
+                </${Text}>
+              </${Appear}>
+              <${Appear}>
+                <${Text} fontSize="h3">
+                  <${IconHtm} name="fire" /> Keep an eye on <${Em}>code<//> vs. <${Em}>law<//>...
+                </${Text}>
+              </${Appear}>
             </${FlexBox}>
             <${Notes}>
               <ul>
@@ -559,7 +575,7 @@
               # Just the beginning
 
               * "Open source" vs. "open weights"
-              * TODO: MORE HERE???
+              * Beyond code (images, video, etc.)
 
               --- { "layout" : "columns" }
 
