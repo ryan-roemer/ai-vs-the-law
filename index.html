@@ -97,7 +97,6 @@
         CodeSpan,
         OrderedList,
         ListItem,
-        Appear,
         Slide,
         Deck,
         Text,
@@ -130,18 +129,12 @@
         TopicSlide,
         CodeEditor,
         CaseSlide,
+        AppearComponent,
+        animateListItems,
       } from "./deck/components.js";
       const html = htm.bind(createElement);
 
       const examples = await getExamples();
-
-      const urlParams = new URLSearchParams(window.location.search);
-      const animationsEnabled =
-        urlParams.get("animate") === "false" ? false : true;
-      const AppearComponent = animationsEnabled ? Appear : Fragment;
-      const animateListItems = animationsEnabled
-        ? { animateListItems: true }
-        : {};
 
       // The presentation deck.
       const Presentation =
@@ -411,32 +404,95 @@
               * Holding - 2025: Infringement and no fair use
                 * (1) Commercial, not transformative
                 * (4) Directly harmed Westlaw's market
-              * Status: In appeals"
+              * Status: In appeals
             `}
           />
-          <${MarkdownSlideSet} ...${animateListItems}>
-            ${`
-              ---
-              # In re OpenAI Litigation
-
+          <${CaseSlide}
+            title="In re OpenAI Litigation"
+            sections=${[
+              {
+                title: "Parties",
+                items: [
+                  {
+                    icon: "sword",
+                    text: "Plaintiffs: News companies, authors, etc.",
+                  },
+                  {
+                    icon: "shield",
+                    text: "Defendants: OpenAI, MSFT",
+                  },
+                ],
+              },
+              {
+                title: "Status",
+                items: [
+                  {
+                    icon: "hourglass",
+                    text: "Ongoing",
+                  },
+                ],
+              },
+            ]}
+            notes=${`
               * Plaintiffs: News companies, authors, etc.
               * Defendants: OpenAI, MSFT.
               * Various in flight developments.
-
-              <!--
-              TODO: REMOVE???
               * George RR Martin, Sarah Silverman, Michael Chabon, John Grisham, Scott Turow, etc.
               * https://www.bakerlaw.com/in-re-openai-inc-copyright-infringement-litigation/
-              -->
+            `}
+          />
+          <${CaseSlide}
+            title="Bartz v. Anthropic (ND Cal)"
+            sections=${[
+              {
+                title: "Facts",
+                items: [
+                  {
+                    icon: "browser",
+                    text: "Online sources",
+                  },
+                  {
+                    icon: "book",
+                    text: "Scanned books",
+                  },
+                  {
+                    icon: "prohibit",
+                    text: "Pirated books",
+                  },
+                ],
+              },
+              {
+                title: "Holdings",
+                items: [
+                  {
+                    icon: "x-circle",
+                    color: colors.red.base,
+                    text: "Pirated = Infringing",
+                  },
+                  {
+                    icon: "check-circle",
+                    color: colors.green.base,
+                    text: "Non-pirated + online = fair use",
+                  },
 
-              ---
-              # Bartz v. Anthropic (ND Cal)
-
+                  {
+                    icon: "money",
+                    color: colors.green.base,
+                    text: "Settlement",
+                  },
+                ],
+              },
+            ]}
+            notes=${`
               * Claude training data gathered from (1) allowed online sources, (2) pirated sources, and (3) buying and scanning books.
               * June 23: District court ruling:
                 * Non-pirated sources are fair use. Exceedingly "transformative" use. (1)
                 * Pirated sources are not fair use. Market harm. (4)
               * Sept. 25: $1.5 billion settlement with [preliminary approval](https://www.dailyjournal.com/articles/387788-judge-grants-preliminary-approval-of-1-5b-anthropic-ai-copyright-case)
+            `}
+          />
+          <${MarkdownSlideSet} ...${animateListItems}>
+            ${`
 
               ---
               # Kadrey v. Meta Platforms (ND Cal)

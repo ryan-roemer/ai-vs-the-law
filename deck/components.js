@@ -1,6 +1,8 @@
+/* global URLSearchParams:false,window:false */
 import { Fragment, createElement } from "react";
 import htm from "htm";
 import {
+  Appear,
   Slide,
   Heading,
   CodePane,
@@ -18,6 +20,13 @@ import { themes } from "prism-react-renderer";
 import { theme, colors } from "./theme.js";
 
 const html = htm.bind(createElement);
+
+const urlParams = new URLSearchParams(window.location.search);
+const animationsEnabled = urlParams.get("animate") === "false" ? false : true;
+export const AppearComponent = animationsEnabled ? Appear : Fragment;
+export const animateListItems = animationsEnabled
+  ? { animateListItems: true }
+  : {};
 
 // Icon components
 export const icon = (args) => {
