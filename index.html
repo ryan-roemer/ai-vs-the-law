@@ -379,6 +379,7 @@
             `}
           </${MarkdownSlideSet}>
           <!--
+            // TODO: REMOVE
             facts=${[
               "ROSS used Westlaw headnotes to train its AI legal search engine",
               "2025: Infringement and no fair use",
@@ -390,18 +391,26 @@
             ]}
 
             -->
-           <${CaseSlide}
-             title="Thomson Reuters v. ROSS (D Del)"
-             facts=${[
-               "ROSS used Westlaw headnotes to train its AI legal search engine",
-               "2025: Infringement and no fair use",
-               "In appeals"
-             ]}
-             holdings=${[
-               "Commercial, not transformative (1)",
-               "Directly harmed Westlaw's market (4)"
-             ]}
-           />
+          <${CaseSlide}
+            title="Thomson Reuters v. ROSS (D Del)"
+            sections=${[
+              {
+                title: "Facts",
+                items: [
+                  "ROSS used Westlaw headnotes to train its AI legal search engine",
+                  "2025: Infringement and no fair use",
+                  "In appeals",
+                ],
+              },
+              {
+                title: "Holdings",
+                items: [
+                  "Commercial, not transformative (1)",
+                  "Directly harmed Westlaw's market (4)",
+                ],
+              },
+            ]}
+          />
           <${MarkdownSlideSet} ...${animateListItems}>
             ${`
               ---

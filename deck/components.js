@@ -131,77 +131,74 @@ export const CodeEditor = ({ code }) => html`
 `;
 
 // Case slide component
-export const CaseSlide = ({ title, facts = [], holdings = [] }) => {
-  const factsCount = Math.max(facts.length, 1);
-  const holdingsCount = Math.max(holdings.length, 1);
-  const totalRows = factsCount + holdingsCount;
+export const CaseSlide = ({ title, sections = [] }) => {
+  // Calculate grid layout based on sections
+  const totalRows = sections.reduce(
+    (sum, section) => sum + Math.max(section.items.length, 1),
+    0,
+  );
   const gridRows = `repeat(${totalRows}, 1fr)`;
+  const gridColumns = `repeat(${sections.length * 2}, 1fr)`;
+
+  let currentRow = 1;
 
   return html`
     <${Slide}>
       <${Heading}>${title}</${Heading}>
       <${FlexBox} justifyContent="center" alignItems="center">
         <${Grid}
-          gridTemplateColumns="1fr 1fr 1fr 1fr"
+          gridTemplateColumns=${gridColumns}
           gridTemplateRows=${gridRows}
           gridGap="20px"
           width="100%"
         >
-          <!-- Facts label - spans all facts rows -->
-          <${Box}
-            gridRow=${`1 / ${factsCount + 1}`}
-            border="1px solid #fff"
-            padding="15px"
-            borderRadius="8px"
-          >
-            <${Text} color="secondary" fontSize="2.5em" textAlign="center">
-              Facts
-            </${Text}>
-          </${Box}>
+          ${sections.map((section, sectionIndex) => {
+            const itemCount = Math.max(section.items.length, 1);
+            const sectionStartRow = currentRow;
+            const sectionEndRow = currentRow + itemCount;
+            const labelColumn = sectionIndex * 2 + 1;
+            const contentColumn = sectionIndex * 2 + 2;
 
-          <!-- Facts content cells -->
-          ${facts.map((fact, i) => html`
-            <${Box}
-              key=${`facts-content-${i}`}
-              gridRow=${i + 1}
-              gridColumn="2"
-              border="1px solid #fff"
-              padding="15px"
-              borderRadius="8px"
-            >
-              <${Text} color="primary" fontSize="1.2em">
-                ${fact}
-              </${Text}>
-            </${Box}>
-          `)}
+            currentRow = sectionEndRow;
 
-          <!-- Holdings label - spans all holdings rows -->
-          <${Box}
-            gridRow=${`${factsCount + 1} / ${totalRows + 1}`}
-            border="1px solid #fff"
-            padding="15px"
-            borderRadius="8px"
-          >
-            <${Text} color="secondary" fontSize="2.5em" textAlign="center">
-              Holding
-            </${Text}>
-          </${Box}>
+            return html`
+              <${Fragment}>
+                <!-- Section label - spans all items in this section -->
+                <${Box}
+                  gridRow=${`${sectionStartRow} / ${sectionEndRow}`}
+                  gridColumn=${labelColumn}
+                  border="1px solid #fff"
+                  borderRadius="8px"
+                >
+                  <${FlexBox} height="100%" justifyContent="center" alignItems="center">
+                    <${Text} color="secondary" fontSize="2.5em" textAlign="center" width="100%">
+                      ${section.title}
+                    </${Text}>
+                  </${FlexBox}>
+                </${Box}>
 
-          <!-- Holdings content cells -->
-          ${holdings.map((holding, i) => html`
-            <${Box}
-              key=${`holdings-content-${i}`}
-              gridRow=${factsCount + i + 1}
-              gridColumn="4"
-              border="1px solid #fff"
-              padding="15px"
-              borderRadius="8px"
-            >
-              <${Text} color="primary" fontSize="1.2em">
-                ${holding}
-              </${Text}>
-            </${Box}>
-          `)}
+                <!-- Section content cells -->
+                ${section.items.map(
+                  (item, itemIndex) => html`
+                  <${Box}
+                    key=${`section-${sectionIndex}-item-${itemIndex}`}
+                    gridRow=${sectionStartRow + itemIndex}
+                    gridColumn=${contentColumn}
+                    border="1px solid #fff"
+                    padding="15px"
+                    borderRadius="8px"
+                  >
+                    <${FlexBox} height="100%" justifyContent="center" alignItems="center">
+                      <${Text} color="primary" fontSize="1.2em">
+                        ${item}
+                      </${Text}>
+                    </${FlexBox}>
+                  </${Box}>
+                `,
+                )}
+              </${Fragment}>
+            `;
+          })}
         </${Grid}>
       </${FlexBox}>
     </${Slide}>
