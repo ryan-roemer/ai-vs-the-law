@@ -8,6 +8,8 @@ import {
   Box,
   FullScreen,
   AnimatedProgress,
+  Grid,
+  Text,
 } from "spectacle";
 import { LiveEditor, LivePreview, LiveError, LiveProvider } from "react-live";
 import { themes } from "prism-react-renderer";
@@ -127,3 +129,81 @@ export const CodeEditor = ({ code }) => html`
     </div>
   </${LiveProvider}>
 `;
+
+// Case slide component
+export const CaseSlide = ({ title, facts = [], holdings = [] }) => {
+  const factsCount = Math.max(facts.length, 1);
+  const holdingsCount = Math.max(holdings.length, 1);
+  const totalRows = factsCount + holdingsCount;
+  const gridRows = `repeat(${totalRows}, 1fr)`;
+
+  return html`
+    <${Slide}>
+      <${Heading}>${title}</${Heading}>
+      <${FlexBox} justifyContent="center" alignItems="center">
+        <${Grid}
+          gridTemplateColumns="1fr 1fr 1fr 1fr"
+          gridTemplateRows=${gridRows}
+          gridGap="20px"
+          width="100%"
+        >
+          <!-- Facts label - spans all facts rows -->
+          <${Box}
+            gridRow=${`1 / ${factsCount + 1}`}
+            border="1px solid #fff"
+            padding="15px"
+            borderRadius="8px"
+          >
+            <${Text} color="secondary" fontSize="2.5em" textAlign="center">
+              Facts
+            </${Text}>
+          </${Box}>
+
+          <!-- Facts content cells -->
+          ${facts.map((fact, i) => html`
+            <${Box}
+              key=${`facts-content-${i}`}
+              gridRow=${i + 1}
+              gridColumn="2"
+              border="1px solid #fff"
+              padding="15px"
+              borderRadius="8px"
+            >
+              <${Text} color="primary" fontSize="1.2em">
+                ${fact}
+              </${Text}>
+            </${Box}>
+          `)}
+
+          <!-- Holdings label - spans all holdings rows -->
+          <${Box}
+            gridRow=${`${factsCount + 1} / ${totalRows + 1}`}
+            border="1px solid #fff"
+            padding="15px"
+            borderRadius="8px"
+          >
+            <${Text} color="secondary" fontSize="2.5em" textAlign="center">
+              Holding
+            </${Text}>
+          </${Box}>
+
+          <!-- Holdings content cells -->
+          ${holdings.map((holding, i) => html`
+            <${Box}
+              key=${`holdings-content-${i}`}
+              gridRow=${factsCount + i + 1}
+              gridColumn="4"
+              border="1px solid #fff"
+              padding="15px"
+              borderRadius="8px"
+            >
+              <${Text} color="primary" fontSize="1.2em">
+                ${holding}
+              </${Text}>
+            </${Box}>
+          `)}
+        </${Grid}>
+      </${FlexBox}>
+    </${Slide}>
+  `;
+};

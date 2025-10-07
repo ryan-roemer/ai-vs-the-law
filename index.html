@@ -129,6 +129,7 @@
         JsSlide,
         TopicSlide,
         CodeEditor,
+        CaseSlide,
       } from "./deck/components.js";
       const html = htm.bind(createElement);
 
@@ -375,20 +376,34 @@
               * https://www.mckoolsmith.com/newsroom-ailitigation-12
               -->
 
-              ---
-              # Thomson Reuters v. ROSS (D Del)
+            `}
+          </${MarkdownSlideSet}>
+          <!--
+            facts=${[
+              "ROSS used Westlaw headnotes to train its AI legal search engine",
+              "2025: Infringement and no fair use",
+              "In appeals",
+            ]}
+            holdings=${[
+              "Commercial, not transformative (1)",
+              "Directly harmed Westlaw's market (4)",
+            ]}
 
-              * ROSS used Westlaw headnotes to train its AI legal search engine.
-              * 2025: Infringement and no fair use
-                  * Commercial, not transformative (1)
-                  * Directly harmed Westlaw's market (4)
-              * In appeals.
-
-              <!--
-              * TAKEAWAY: Uh oh.
-              * https://www.bakerlaw.com/thomson-reuters-v-ross/
-              -->
-
+            -->
+           <${CaseSlide}
+             title="Thomson Reuters v. ROSS (D Del)"
+             facts=${[
+               "ROSS used Westlaw headnotes to train its AI legal search engine",
+               "2025: Infringement and no fair use",
+               "In appeals"
+             ]}
+             holdings=${[
+               "Commercial, not transformative (1)",
+               "Directly harmed Westlaw's market (4)"
+             ]}
+           />
+          <${MarkdownSlideSet} ...${animateListItems}>
+            ${`
               ---
               # In re OpenAI Litigation
 
