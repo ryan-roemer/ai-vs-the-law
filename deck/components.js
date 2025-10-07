@@ -171,22 +171,42 @@ export const CaseSlide = ({ title, sections = [], notes }) => {
                 </${Box}>
 
                 <!-- Section content cells -->
-                ${section.items.map(
-                  (item, itemIndex) => html`
-                  <${Box}
-                    key=${`section-${sectionIndex}-item-${itemIndex}`}
-                    border="1px solid #fff"
-                    padding="15px"
-                    borderRadius="8px"
-                  >
-                    <${FlexBox} height="100%" justifyContent="center" alignItems="center">
-                      <${Text} color="primary" fontSize="1.5em">
-                        ${item}
-                      </${Text}>
-                    </${FlexBox}>
-                  </${Box}>
-                `,
-                )}
+                ${section.items.map((item, itemIndex) => {
+                  // Handle both string items and { icon, text } objects
+                  const itemText = typeof item === "string" ? item : item.text;
+                  const itemIcon =
+                    typeof item === "object" && item.icon ? item.icon : null;
+                  const itemIconColor =
+                    itemIcon && item.color ? item.color : null;
+
+                  return html`
+                    <${Box}
+                      key=${`section-${sectionIndex}-item-${itemIndex}`}
+                      border="1px solid #fff"
+                      padding="15px"
+                      borderRadius="8px"
+                    >
+                      <${FlexBox} height="100%" justifyContent="center" alignItems="center" flexDirection="column">
+                        <${Text} color="primary" fontSize="1.8em" textAlign="center">
+                          ${
+                            itemIcon
+                              ? html`<${Icon}
+                                  name=${itemIcon}
+                                  fill=${true}
+                                  color=${itemIconColor}
+                                  style=${{
+                                    fontSize: "2em",
+                                    marginBottom: "0.2em",
+                                  }}
+                                /> `
+                              : null
+                          }
+                          ${itemText}
+                        </${Text}>
+                      </${FlexBox}>
+                    </${Box}>
+                  `;
+                })}
 
                 <!-- Empty padding -->
                 ${Array.from({ length: extraItemsCount }).map(

@@ -39,6 +39,13 @@ export const colors = {
     30: "#D9D9D9",
     80: "#454551",
   },
+  red: {
+    base: "#FF6B6B",
+    80: "#FF8F8F",
+    50: "#FFB3B3",
+    30: "#FFD7D7",
+    10: "#FFEFEF",
+  },
 };
 
 // Nearform theme

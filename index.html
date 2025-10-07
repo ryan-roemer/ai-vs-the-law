@@ -383,11 +383,27 @@
             sections=${[
               {
                 title: "Facts",
-                items: ["X Unauthorized content"],
+                items: [
+                  {
+                    icon: "prohibit",
+                    text: "Unauthorized metadata",
+                  },
+                ],
               },
               {
                 title: "Holdings",
-                items: ["Infringement", "No fair use", "three", "four"],
+                items: [
+                  {
+                    icon: "gavel",
+                    color: colors.red.base,
+                    text: "Infringement",
+                  },
+                  {
+                    icon: "x-circle",
+                    color: colors.red.base,
+                    text: "No fair use",
+                  },
+                ],
               },
             ]}
             notes=${`
