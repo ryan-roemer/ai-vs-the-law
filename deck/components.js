@@ -31,8 +31,8 @@ export const iconArrow = icon({
   color: theme.colors.quaternary,
 });
 
-export const Icon = ({ name, fill = true }) =>
-  html`<i class="ph${fill ? "-fill" : ""} ph-${name}"></i>`;
+export const Icon = ({ name, fill = true, color }) =>
+  html`<i class="ph${fill ? "-fill" : ""} ph-${name}" style=${{ color }}></i>`;
 
 export const IconLink = ({ name, href, fill = false, color }) => html`
   <a href=${href} style=${{ color, textDecoration: "none" }}

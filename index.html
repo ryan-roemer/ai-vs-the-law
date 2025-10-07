@@ -134,9 +134,13 @@
 
       const examples = await getExamples();
 
-      const ANIMATE = false;
-      const AppearComponent = ANIMATE ? Appear : Fragment;
-      const animateListItems = ANIMATE ? { animateListItems: true } : {};
+      const urlParams = new URLSearchParams(window.location.search);
+      const animationsEnabled =
+        urlParams.get("animate") === "false" ? false : true;
+      const AppearComponent = animationsEnabled ? Appear : Fragment;
+      const animateListItems = animationsEnabled
+        ? { animateListItems: true }
+        : {};
 
       // The presentation deck.
       const Presentation =
@@ -244,10 +248,29 @@
             <${Heading}>Roadmap</${Heading}>
             <${FlexBox} justifyContent="center" alignItems="center" height="70%">
               <${Grid} gridTemplateColumns="1fr 1fr" gridTemplateRows="1fr 1fr" gridGap="30px">
-                ${["Copyright law", "Inputs", "Outputs", "The future"].map(
-                  (title, i) => html`
-                    <${Box} key=${i} border="5px solid #fff" padding="30px" borderRadius="8px">
-                      <${Text} color="secondary" fontSize="3em" textAlign="center">${title}</${Text}>
+                ${[
+                  {
+                    title: "Copyright",
+                    icon: "copyright",
+                  },
+                  {
+                    title: "Inputs",
+                    icon: "sign-in",
+                  },
+                  {
+                    title: "Outputs",
+                    icon: "sign-out",
+                  },
+                  {
+                    title: "Future",
+                    icon: "rocket",
+                  },
+                ].map(
+                  ({ title, icon }, i) => html`
+                    <${Box} key=${i} border="1px solid #fff" padding="30px" borderRadius="8px">
+                      <${Text} color="secondary" fontSize="3em" textAlign="left">
+                        <${Icon} name=${icon} fill=${true} color=${theme.colors.primary} /> ${title}
+                      </${Text}>
                     </${Box}>
                   `,
                 )}
@@ -261,8 +284,12 @@
 
               * ${em("IAAL")} but ${em("IANYL")} (and even there, ${em("IAAIL")})
               * Raise awareness, ${em("not")} provide answers or advice
-              * We'll talk about ${em("US")} law
+              * We'll talk about ${em("US")} law and computer ${em("code")}
               * Talk to your own legal team
+
+              Notes: \
+                Real lega questions deserve real lawyers.
+
 
             `}
           </${MarkdownSlideSet}>
@@ -495,6 +522,9 @@
               * Image copyright registration
               * With an AI as the "author"
               * Holding (2025): US Copyright Act requires human authorship.
+
+              Notes: \
+                Thaler is the inventor.
             `}
           </${MarkdownSlideSet}>
           <${Slide}>
