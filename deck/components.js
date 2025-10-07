@@ -10,6 +10,8 @@ import {
   AnimatedProgress,
   Grid,
   Text,
+  Notes,
+  Markdown,
 } from "spectacle";
 import { LiveEditor, LivePreview, LiveError, LiveProvider } from "react-live";
 import { themes } from "prism-react-renderer";
@@ -131,16 +133,14 @@ export const CodeEditor = ({ code }) => html`
 `;
 
 // Case slide component
-export const CaseSlide = ({ title, sections = [] }) => {
+export const CaseSlide = ({ title, sections = [], notes }) => {
   // Calculate grid layout based on sections
-  const totalRows = sections.reduce(
-    (sum, section) => sum + Math.max(section.items.length, 1),
-    0,
+  const maxItems = Math.max(
+    ...sections.map((section) => Math.max(section.items.length, 1)),
+    1,
   );
-  const gridRows = `repeat(${totalRows}, 1fr)`;
-  const gridColumns = `repeat(${sections.length * 2}, 1fr)`;
-
-  let currentRow = 1;
+  const gridRows = `repeat(${sections.length}, 1fr)`;
+  const gridColumns = `repeat(${maxItems + 1}, 1fr)`;
 
   return html`
     <${Slide}>
@@ -154,19 +154,12 @@ export const CaseSlide = ({ title, sections = [] }) => {
         >
           ${sections.map((section, sectionIndex) => {
             const itemCount = Math.max(section.items.length, 1);
-            const sectionStartRow = currentRow;
-            const sectionEndRow = currentRow + itemCount;
-            const labelColumn = sectionIndex * 2 + 1;
-            const contentColumn = sectionIndex * 2 + 2;
-
-            currentRow = sectionEndRow;
+            const extraItemsCount = maxItems - itemCount;
 
             return html`
               <${Fragment}>
                 <!-- Section label - spans all items in this section -->
                 <${Box}
-                  gridRow=${`${sectionStartRow} / ${sectionEndRow}`}
-                  gridColumn=${labelColumn}
                   border="1px solid #fff"
                   borderRadius="8px"
                 >
@@ -182,25 +175,38 @@ export const CaseSlide = ({ title, sections = [] }) => {
                   (item, itemIndex) => html`
                   <${Box}
                     key=${`section-${sectionIndex}-item-${itemIndex}`}
-                    gridRow=${sectionStartRow + itemIndex}
-                    gridColumn=${contentColumn}
                     border="1px solid #fff"
                     padding="15px"
                     borderRadius="8px"
                   >
                     <${FlexBox} height="100%" justifyContent="center" alignItems="center">
-                      <${Text} color="primary" fontSize="1.2em">
+                      <${Text} color="primary" fontSize="1.5em">
                         ${item}
                       </${Text}>
                     </${FlexBox}>
                   </${Box}>
                 `,
                 )}
+
+                <!-- Empty padding -->
+                ${Array.from({ length: extraItemsCount }).map(
+                  (_, i) => html`
+                  <${Box} key=${`section-${sectionIndex}-item-${i}`}></${Box}>`,
+                )}
               </${Fragment}>
             `;
           })}
         </${Grid}>
       </${FlexBox}>
+      ${
+        notes
+          ? html`<${Notes}>
+        <${Markdown} className="notes">
+          ${notes}
+        </${Markdown}>
+      </${Notes}>`
+          : null
+      }
     </${Slide}>
   `;
 };
