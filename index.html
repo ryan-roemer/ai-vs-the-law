@@ -111,7 +111,6 @@
         MarkdownSlide,
         MarkdownSlideSet,
         Notes,
-        DefaultTemplate,
         SlideLayout,
         SpectacleLogo,
       } from "spectacle";
@@ -126,6 +125,7 @@
         IconLink,
         em,
         Em,
+        Template,
         JsSlide,
         TopicSlide,
         CodeEditor,
@@ -140,7 +140,7 @@
 
       // The presentation deck.
       const Presentation =
-        () => html`<${Deck} theme=${theme} template=${html` <${DefaultTemplate} />`}>
+        () => html`<${Deck} theme=${theme} template=${Template}>
           <${Slide}>
             <${FlexBox} height="100%" flexDirection="column">
               <${Heading} fontSize="140px" style=${{ margin: "0" }}>
@@ -157,7 +157,7 @@
               height="150px"
               style=${{
                 position: "absolute",
-                bottom: "80px",
+                bottom: "20px",
                 right: "20px",
                 border: "5px solid #fff",
                 zIndex: 1000,
@@ -260,25 +260,23 @@
               # Admonitions & disclaimers
 
               * ${em("IAAL")} but ${em("IANYL")} (and even there, ${em("IAAIL")})
-              * Raise awareness, not provide answers or advice
+              * Raise awareness, ${em("not")} provide answers or advice
+              * We'll talk about ${em("US")} law
               * Talk to your own legal team
-              * This is evolving quickly
 
             `}
           </${MarkdownSlideSet}>
           <${TopicSlide} backgroundUrl=${backgrounds.gavelBook}>
-            Law Stuff
+            Law stuff
           </${TopicSlide}>
           <${MarkdownSlideSet} ...${animateListItems}>
             ${`
               ---
               # Copyright law
 
-              * A valid copyright protects the ${em("original")} (creative) expression of a work.
-              * Provides exclusive rights to:
-                   * ${em("reproduction")}
-                   * distribution
-                   * preparation of "${em("derivative works")}"
+              A valid copyright protects the ${em("original")} (creative) expression of a work.
+
+              Provides exclusive rights to: ${em("reproduction")},  ${em("distribution")}, preparation of "${em("derivative works")}"
 
               <!--
               * Reproduce: direct evidence or access + striking similarity.
@@ -290,17 +288,14 @@
 
               A **defense** to copyright infringment. ([17 U.S. Code § 107](https://www.law.cornell.edu/uscode/text/17/107))
 
-              1. the ${em("purpose")} and ${em("character")} of the use, ...;
-                * _Commercial? Educational? Transformative?_
-              2. the ${em("nature")} of the copyrighted work;
-                * _Factual? Creative?_
+              1. the ${em("purpose")} and ${em("character")} of the use
+              2. the ${em("nature")} of the copyrighted work
+              3. the ${em("amount")} and substantiality of the portion used
+              4. the effect of the use upon the ${em("market value")} of the copyrighted work
 
-              ---
-              ## Fair use
-              3. the ${em("amount")} and substantiality of the portion used in relation to the ... whole; and
-              4. the effect of the use upon the ${em("market value")} of the copyrighted work.
-
-              <!-- TODO: Aside on OSS licensing here -->
+              Notes: \
+                1. Purpose: Commercial? Educational? Transformative?           \
+                2. Nature: Factual? Creative?
 
             `}
           </${MarkdownSlideSet}>

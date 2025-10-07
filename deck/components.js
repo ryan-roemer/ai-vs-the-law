@@ -1,6 +1,14 @@
-import { createElement } from "react";
+import { Fragment, createElement } from "react";
 import htm from "htm";
-import { Slide, Heading, CodePane, FlexBox } from "spectacle";
+import {
+  Slide,
+  Heading,
+  CodePane,
+  FlexBox,
+  Box,
+  FullScreen,
+  AnimatedProgress,
+} from "spectacle";
 import { LiveEditor, LivePreview, LiveError, LiveProvider } from "react-live";
 import { themes } from "prism-react-renderer";
 import { theme, colors } from "./theme.js";
@@ -38,6 +46,24 @@ export const em = (text) =>
 
 export const Em = ({ children }) =>
   html`<span style=${{ color: theme.colors.secondary }}>${children}</span>`;
+
+export const Template = ({ color = "#fff", slideNumber } = {}) => {
+  return html`
+    <${FlexBox}
+      justifyContent="space-between"
+      position="absolute"
+      bottom=${0}
+      width=${1}
+    >
+      <${Box} padding="0 1em">
+        <${FullScreen} color=${color} />
+      <//>
+      <${Box} padding="1em">
+        <${slideNumber === 1 ? Fragment : AnimatedProgress} color=${color} />
+      <//>
+    <//>
+  `;
+};
 
 // Slide components
 export const JsSlide = ({ title, code }) => html`
