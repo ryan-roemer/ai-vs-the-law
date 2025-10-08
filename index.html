@@ -135,6 +135,7 @@
       const html = htm.bind(createElement);
 
       const examples = await getExamples();
+      const TASK_SLIDE = 39; // TODO: Programmatically find this???
 
       // The presentation deck.
       const Presentation =
@@ -161,6 +162,16 @@
                 zIndex: 1000,
               }}
             />
+            <${Notes}>
+              <${Markdown} className="notes">
+                ${`
+                  ...in case you're dreading the thought of just hearing about the law for the next 30 minutes...
+                  * I do have a quick coding exercise that you can start now.
+                  * Hit the QR code to go to the live slides,
+                  * And navigate to [slide ${TASK_SLIDE}](/?slideIndex=${TASK_SLIDE}).
+                `}
+              </${Markdown}>
+            </${Notes}>
           </${Slide}>
           <${Slide}
             backgroundImage="url(${backgrounds.chesapeakeBay})"
@@ -282,9 +293,7 @@
               * Talk to your own legal team
 
               Notes: \
-                Real lega questions deserve real lawyers.
-
-
+                Survey: Engineers? Lawyers? Both?
             `}
           </${MarkdownSlideSet}>
           <${TopicSlide} backgroundUrl=${backgrounds.gavelBook}>
@@ -333,7 +342,7 @@
 
             `}
           </${MarkdownSlideSet}>
-          <${TopicSlide}>
+          <${TopicSlide} backgroundUrl=${backgrounds.networkCables}>
             Training data
           </${TopicSlide}>
           <${MarkdownSlideSet} ...${animateListItems}>
@@ -536,7 +545,7 @@
               * https://www.bakerlaw.com/kadrey-v-meta/
             `}
           />
-          <${TopicSlide}>
+          <${TopicSlide} backgroundUrl=${backgrounds.cuttingBoard}>
             Scraping
           </${TopicSlide}>
           <${MarkdownSlideSet} ...${animateListItems}>
@@ -550,8 +559,8 @@
                 [Fastly](https://www.fastly.com/blog/control-and-monetize-your-content-with-the-rsl-standard), etc.
             `}
           </${MarkdownSlideSet}>
-          <${TopicSlide}>
-            Takeaways
+          <${TopicSlide} backgroundUrl=${backgrounds.notebook}>
+            Inputs Takeaways
           </${TopicSlide}>
           <${MarkdownSlideSet} ...${animateListItems}>
             ${`
@@ -623,18 +632,47 @@
               Notes: \
                 We'll discuss two developments: \
                 Thaler v. Perlmutter (D DC), US Copyright Office second report.
-
-              ---
-              # Thaler v. Perlmutter (D DC)
-
-              * Image copyright registration
-              * With an AI as the "author"
-              * Holding (2025): US Copyright Act requires human authorship.
-
-              Notes: \
-                Thaler is the inventor.
             `}
           </${MarkdownSlideSet}>
+          <${CaseSlide}
+            title="Thaler v. Perlmutter (D DC)"
+            sections=${[
+              {
+                title: "Facts",
+                items: [
+                  {
+                    icon: "wrench",
+                    text: "AI image tool",
+                  },
+                  {
+                    icon: "robot",
+                    text: 'AI is the "author"',
+                  },
+                ],
+              },
+              {
+                title: "Holdings",
+                items: [
+                  {
+                    icon: "copyright",
+                    color: colors.red.base,
+                    text: "No copyright",
+                  },
+                  {
+                    icon: "x-circle",
+                    color: colors.red.base,
+                    text: "Only human authorship is protected",
+                  },
+                ],
+              },
+            ]}
+            notes=${`
+              * Image copyright registration
+              * With an AI as the "author"
+              * Thaler is the inventor.
+              * Holding (2025): US Copyright Act requires human authorship.
+            `}
+          />
           <${Slide}>
             <${FlexBox} height="100%" flexDirection="column" justifyContent="top" alignItems="center">
               <${Heading} fontSize="h1" color="secondary">
@@ -647,9 +685,9 @@
               </${Heading}>
               <${Markdown}>
                 ${`
-                  * ${em("Purely AI-generated content")} is not protected.
-                  * ${em("Prompts & instructions")} alone are not sufficient.
-                  * ${em("Human control")} of "selection and placement" of the "creative elements" may be.
+                  * ${em("Purely AI-generated content")} is not protected
+                  * ${em("Prompts & instructions")} alone are not sufficient
+                  * ${em("Human control")} of "selection and placement" of the "creative elements" may be
                 `}
               </${Markdown}>
             </${FlexBox}>
@@ -677,16 +715,11 @@
               ---
               # High level
 
-              Write a JS CLI tool to translate a package.json license to a full license name.
+              > Write a JS CLI tool to translate a \`package.json\` license field to a full license name.
 
-              ---
-              # Specifics
+              Full SPDX JSON data is available [on GitHub](https://raw.githubusercontent.com/spdx/license-list-data/refs/heads/main/json/licenses.json).
 
-              \`\`\`markdown
-              ${examples.task.code.split("\n").join("\n              ")}
-              \`\`\`
-
-              <!-- TODO: Move specifics to after the code examples? -->
+              Detailed task description on [slide ${TASK_SLIDE}](/?slideIndex=${TASK_SLIDE}).
 
             `}
           </${MarkdownSlideSet}>
@@ -695,6 +728,13 @@
           <${JsSlide} title="Example 3" code=${examples.copilot.code} />
           <${MarkdownSlideSet} ...${animateListItems}>
             ${`
+              ---
+              # Task Description
+
+              \`\`\`markdown
+              ${examples.task.code.split("\n").join("\n              ")}
+              \`\`\`
+
               ---
               # A coding exercise!
 
