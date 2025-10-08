@@ -441,6 +441,7 @@
               * https://www.bakerlaw.com/in-re-openai-inc-copyright-infringement-litigation/
             `}
           />
+
           <${CaseSlide}
             title="Bartz v. Anthropic (ND Cal)"
             sections=${[
@@ -472,7 +473,8 @@
                   {
                     icon: "check-circle",
                     color: colors.green.base,
-                    text: "Non-pirated + online = fair use",
+                    text: html`Non-pirated + online =
+                      <span style=${{ whiteSpace: "nowrap" }}>fair use</span>`,
                   },
 
                   {
@@ -491,24 +493,49 @@
               * Sept. 25: $1.5 billion settlement with [preliminary approval](https://www.dailyjournal.com/articles/387788-judge-grants-preliminary-approval-of-1-5b-anthropic-ai-copyright-case)
             `}
           />
-          <${MarkdownSlideSet} ...${animateListItems}>
-            ${`
 
-              ---
-              # Kadrey v. Meta Platforms (ND Cal)
-
+          <${CaseSlide}
+            title="Bartz v. Anthropic (ND Cal)"
+            sections=${[
+              {
+                title: "Facts",
+                items: [
+                  {
+                    icon: "browser",
+                    text: "Permitted sources",
+                  },
+                  {
+                    icon: "prohibit",
+                    text: "Pirated books",
+                  },
+                ],
+              },
+              {
+                title: "Holdings",
+                items: [
+                  {
+                    icon: "check-circle",
+                    color: colors.green.base,
+                    text: html`All
+                      <span style=${{ whiteSpace: "nowrap" }}>fair use</span>`,
+                  },
+                  {
+                    icon: "treasure-chest",
+                    color: colors.green.base,
+                    text: "Even pirated!",
+                  },
+                ],
+              },
+            ]}
+            notes=${`
               * Llama training data. Pirated sources.
               * June 25: Fair use.
-                * Transformative (1)
-                * No market harm. (4)
-              * Limited to specific plaintiffs. Nod to _Bartz_.
-
-              <!--
-              * https://www.bakerlaw.com/kadrey-v-meta-platforms-inc-llama-fair-use-litigation/
-              -->
-
+                * (1) Transformative
+                * (4) No market harm
+              * Limited to specific plaintiffs. Nod to _Bartz_
+              * https://www.bakerlaw.com/kadrey-v-meta/
             `}
-          </${MarkdownSlideSet}>
+          />
           <${TopicSlide}>
             Scraping
           </${TopicSlide}>
@@ -550,7 +577,7 @@
             `}
           </${MarkdownSlideSet}>
           <${TopicSlide}>
-            <${Icon} name="copyright" fill=${false} /> Infringement
+            Infringement
           </${TopicSlide}>
           <${MarkdownSlideSet} ...${animateListItems}>
             ${`
@@ -575,7 +602,7 @@
             `}
           </${MarkdownSlideSet}>
           <${TopicSlide}>
-            <${Icon} name="copyright" fill=${false} /> Ownership
+            Ownership
           </${TopicSlide}>
           <${MarkdownSlideSet} ...${animateListItems}>
             ${`

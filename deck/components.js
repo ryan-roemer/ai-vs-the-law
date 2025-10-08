@@ -44,8 +44,11 @@ export const iconArrow = icon({
   color: theme.colors.quaternary,
 });
 
-export const Icon = ({ name, fill = true, color }) =>
-  html`<i class="ph${fill ? "-fill" : ""} ph-${name}" style=${{ color }}></i>`;
+export const Icon = ({ name, fill = true, color, style }) =>
+  html`<i
+    class="ph${fill ? "-fill" : ""} ph-${name}"
+    style=${{ color, ...style }}
+  ></i>`;
 
 export const IconLink = ({ name, href, fill = false, color }) => html`
   <a href=${href} style=${{ color, textDecoration: "none" }}
@@ -173,7 +176,7 @@ export const CaseSlide = ({ title, sections = [], notes }) => {
                   borderRadius="8px"
                 >
                   <${FlexBox} height="100%" justifyContent="center" alignItems="center">
-                    <${Text} color="secondary" fontSize="2.5em" textAlign="center" width="100%">
+                    <${Text} color="quaternary" fontSize="2.5em" textAlign="center" width="100%">
                       ${section.title}
                     </${Text}>
                   </${FlexBox}>
@@ -186,31 +189,34 @@ export const CaseSlide = ({ title, sections = [], notes }) => {
                   const itemIcon =
                     typeof item === "object" && item.icon ? item.icon : null;
                   const itemIconColor =
-                    itemIcon && item.color ? item.color : null;
+                    itemIcon && item.color ? item.color : colors.blue[30];
 
                   return html`
                     <${Box}
                       key=${`section-${sectionIndex}-item-${itemIndex}`}
                       border="1px solid #fff"
-                      padding="15px"
+                      padding="0px"
                       borderRadius="8px"
                     >
                       <${FlexBox} height="100%" justifyContent="center" alignItems="center" flexDirection="column">
                         <${Text} color="primary" fontSize="1.8em" textAlign="center">
-                          ${
-                            itemIcon
-                              ? html`<${Icon}
-                                  name=${itemIcon}
-                                  fill=${true}
-                                  color=${itemIconColor}
-                                  style=${{
-                                    fontSize: "2em",
-                                    marginBottom: "0.2em",
-                                  }}
-                                /> `
-                              : null
-                          }
-                          ${itemText}
+                          <${FlexBox}>
+                            <${Box} marginRight="0.5em">
+                              ${
+                                itemIcon
+                                  ? html`<${Icon}
+                                      name=${itemIcon}
+                                      fill=${true}
+                                      color=${itemIconColor}
+                                      style=${{ fontSize: "2em" }}
+                                    />`
+                                  : null
+                              }
+                            </${Box}>
+                            <${Box} style=${{ textAlign: "left" }}>
+                              ${itemText}
+                            </${Box}>
+                          </${FlexBox}>
                         </${Text}>
                       </${FlexBox}>
                     </${Box}>
