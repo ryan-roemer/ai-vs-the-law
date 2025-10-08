@@ -137,6 +137,13 @@
 
       const examples = await getExamples();
       const TASK_SLIDE = 39; // TODO: Programmatically find this???
+      const deckUrl = (key, val) => {
+        const url = new URL(window.location.href);
+        url.search = "";
+        url.searchParams.set(key, val);
+        return url.toString();
+      };
+      const TASK_SLIDE_URL = deckUrl("slideIndex", TASK_SLIDE);
 
       // The presentation deck.
       const Presentation =
@@ -169,7 +176,7 @@
                   ...in case you're dreading the thought of just hearing about the law for the next 30 minutes...
                   * I do have a quick coding exercise that you can start now.
                   * Hit the QR code to go to the live slides,
-                  * And navigate to [slide ${TASK_SLIDE}](/?slideIndex=${TASK_SLIDE}).
+                  * And navigate to [slide ${TASK_SLIDE}](${TASK_SLIDE_URL}).
                 `}
               </${Markdown}>
             </${Notes}>
@@ -723,7 +730,7 @@
 
               Full SPDX JSON data is available [on GitHub](https://raw.githubusercontent.com/spdx/license-list-data/refs/heads/main/json/licenses.json).
 
-              Detailed task description on [slide ${TASK_SLIDE}](/?slideIndex=${TASK_SLIDE}).
+              Detailed task description on [slide ${TASK_SLIDE}](${TASK_SLIDE_URL}).
 
             `}
           </${MarkdownSlideSet}>
