@@ -144,6 +144,14 @@ export const CodeEditor = ({ code }) => html`
   </${LiveProvider}>
 `;
 
+export const BOX_STYLES = {
+  border: "1px solid #fff",
+  borderRadius: "8px",
+  padding: "0px",
+  justifyContent: "center",
+  alignItems: "center",
+};
+
 // Case slide component
 export const CaseSlide = ({ title, sections = [], notes }) => {
   // Calculate grid layout based on sections
@@ -164,26 +172,24 @@ export const CaseSlide = ({ title, sections = [], notes }) => {
           gridGap="20px"
           width="100%"
         >
-          ${sections.map((section, sectionIndex) => {
+          ${sections.map((section) => {
             const itemCount = Math.max(section.items.length, 1);
             const extraItemsCount = maxItems - itemCount;
 
             return html`
               <${Fragment}>
                 <!-- Section label - spans all items in this section -->
-                <${Box}
-                  border="1px solid #fff"
-                  borderRadius="8px"
+                <${FlexBox}
+                  ...${BOX_STYLES}
+                  height="100%"
                 >
-                  <${FlexBox} height="100%" justifyContent="center" alignItems="center">
-                    <${Text} color="quaternary" fontSize="2.5em" textAlign="center" width="100%">
-                      ${section.title}
-                    </${Text}>
-                  </${FlexBox}>
-                </${Box}>
+                  <${Text} color="quaternary" fontSize="2.5em">
+                    ${section.title}
+                  </${Text}>
+                </${FlexBox}>
 
                 <!-- Section content cells -->
-                ${section.items.map((item, itemIndex) => {
+                ${section.items.map((item, i) => {
                   // Handle both string items and { icon, text } objects
                   const itemText = typeof item === "string" ? item : item.text;
                   const itemIcon =
@@ -192,41 +198,33 @@ export const CaseSlide = ({ title, sections = [], notes }) => {
                     itemIcon && item.color ? item.color : colors.blue[30];
 
                   return html`
-                    <${Box}
-                      key=${`section-${sectionIndex}-item-${itemIndex}`}
-                      border="1px solid #fff"
-                      padding="0px"
-                      borderRadius="8px"
-                    >
-                      <${FlexBox} height="100%" justifyContent="center" alignItems="center" flexDirection="column">
-                        <${Text} color="primary" fontSize="1.8em" textAlign="center">
-                          <${FlexBox}>
-                            <${Box} marginRight="0.5em">
-                              ${
-                                itemIcon
-                                  ? html`<${Icon}
-                                      name=${itemIcon}
-                                      fill=${true}
-                                      color=${itemIconColor}
-                                      style=${{ fontSize: "2em" }}
-                                    />`
-                                  : null
-                              }
-                            </${Box}>
-                            <${Box} style=${{ textAlign: "left" }}>
-                              ${itemText}
-                            </${Box}>
-                          </${FlexBox}>
-                        </${Text}>
-                      </${FlexBox}>
+                    <${FlexBox} key=${i} ...${BOX_STYLES}>
+                      <${Text} color="primary" fontSize="1.8em">
+                        <${FlexBox}>
+                          <${Box} marginRight="0.5em">
+                            ${
+                              itemIcon
+                                ? html`<${Icon}
+                                    name=${itemIcon}
+                                    fill=${true}
+                                    color=${itemIconColor}
+                                    style=${{ fontSize: "2em" }}
+                                  />`
+                                : null
+                            }
+                          </${Box}>
+                          <${Box} style=${{ textAlign: "left" }}>
+                            ${itemText}
+                          </${Box}>
+                        </${FlexBox}>
+                      </${Text}>
                     </${Box}>
                   `;
                 })}
 
                 <!-- Empty padding -->
                 ${Array.from({ length: extraItemsCount }).map(
-                  (_, i) => html`
-                  <${Box} key=${`section-${sectionIndex}-item-${i}`}></${Box}>`,
+                  (_, i) => html`<${Box} key=${i}></${Box}>`,
                 )}
               </${Fragment}>
             `;

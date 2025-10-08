@@ -131,6 +131,7 @@
         CaseSlide,
         AppearComponent,
         animateListItems,
+        BOX_STYLES,
       } from "./deck/components.js";
       const html = htm.bind(createElement);
 
@@ -272,11 +273,11 @@
                   },
                 ].map(
                   ({ title, icon }, i) => html`
-                    <${Box} key=${i} border="1px solid #fff" padding="30px" borderRadius="8px">
+                    <${FlexBox} key=${i} ...${BOX_STYLES} padding="30px">
                       <${Text} color="secondary" fontSize="3em" textAlign="left">
                         <${Icon} name=${icon} fill=${true} color=${theme.colors.primary} /> ${title}
                       </${Text}>
-                    </${Box}>
+                    </${FlexBox}>
                   `,
                 )}
               </${Grid}>
@@ -482,8 +483,10 @@
                   {
                     icon: "check-circle",
                     color: colors.green.base,
-                    text: html`Non-pirated + online =
-                      <span style=${{ whiteSpace: "nowrap" }}>fair use</span>`,
+                    text: html`Non-pirated + online =${" "}<span
+                        style=${{ whiteSpace: "nowrap" }}
+                        >fair use</span
+                      >`,
                   },
 
                   {
@@ -525,8 +528,9 @@
                   {
                     icon: "check-circle",
                     color: colors.green.base,
-                    text: html`All
-                      <span style=${{ whiteSpace: "nowrap" }}>fair use</span>`,
+                    text: html`All${" "}<span style=${{ whiteSpace: "nowrap" }}
+                        >fair use</span
+                      >`,
                   },
                   {
                     icon: "treasure-chest",
