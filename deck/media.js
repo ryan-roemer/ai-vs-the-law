@@ -60,6 +60,9 @@ export const backgrounds = {
   networkCables: `https://images.unsplash.com/photo-1558494949-ef010cbdcc31?${UNSPLASH_QUERY}`,
   postits: `https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?${UNSPLASH_QUERY}`,
   notebook: `https://images.unsplash.com/photo-1598620616655-7fce1a6fdf87?${UNSPLASH_QUERY}`,
+  fire2: `https://images.unsplash.com/photo-1517594422361-5eeb8ae275a9?${UNSPLASH_QUERY}`,
+  danger: `https://images.unsplash.com/photo-1587065915399-8f8c714ab540?${UNSPLASH_QUERY}`,
+  keys: `https://images.unsplash.com/photo-1631164159497-3a2408944c35?${UNSPLASH_QUERY}`,
 
   // Previous
   vintageComputer: `https://images.unsplash.com/photo-1711346105258-bbb9136592d7?${UNSPLASH_QUERY}`,
