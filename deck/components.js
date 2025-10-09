@@ -56,6 +56,10 @@ export const IconLink = ({ name, href, fill = false, color }) => html`
   /></a>
 `;
 
+export const IconArrow = () => html`
+  <${Icon} name="arrow-right" fill=${false} color=${theme.colors.quaternary} />
+`;
+
 // Text styling components
 export const em = (text) =>
   `<span style="color: ${theme.colors.secondary};">${text}</span>`;
