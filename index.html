@@ -743,13 +743,36 @@
 
             `}
           </${MarkdownSlideSet}>
-          <${JsSlide} title="Example 1" code=${examples.cursor.code} />
-          <${JsSlide} title="Example 2" code=${examples.human.code} />
-          <${JsSlide} title="Example 3" code=${examples.copilot.code} />
+          <${JsSlide} title="Example 1" code=${examples.cursor.code}
+            notes=${`
+              ## Example 1 (Cursor)
+              * Pretty straightforward.
+              * We read the package.json file.
+              * We fetch SPDX data.
+              * We do a simple find.
+              * Use a ternary in lines 11-13 to display our outpu.
+            `}
+          />
+          <${JsSlide} title="Example 2" code=${examples.human.code}
+            notes=${`
+              ## Example 2 (Human)
+              * Pretty close to previous example.
+              * Uses optional chaining throughout.
+              * Mixes a '.then()' promise with async/await in lines 6-8.
+              * Uses an if/then to do console output in lines 11-15.
+            `}
+          />
+          <${JsSlide} title="Example 3" code=${examples.copilot.code}
+            notes=${`
+              ## Example 3 (Copilot)
+              * Again, very similar to the other examples.
+              * A mix of the two previous examples really.
+            `}
+          />
           <${MarkdownSlideSet} ...${animateListItems}>
             ${`
               --- { "layout": "center" }
-              # You guessed it...
+              # So why'd we do this?
 
               Notes: Some of these examples are AI-generated.
 
@@ -791,9 +814,9 @@
               ---
               # Ownership: Takeaways
 
-              * Collision between the lawyer and the engineering worlds
-              * The cautious approach is involve and bias _direct_ human creation of code
-              * Assess if it's OK to have some of your code lack copyright protection
+              * ${em("Collision")} between the lawyer and the engineering worlds
+              * The cautious approach is to favor as much ${em("human")} involvement as possible
+              * Assess if it's OK to have some of your code ${em("lack")} copyright protection
             `}
           </${MarkdownSlideSet}>
           <${TopicSlide} backgroundUrl=${backgrounds.mopop}>
@@ -812,7 +835,7 @@
 
               ::section
 
-              # References
+              # This deck!
 
               ${icon("browser")} See the deck at:
               [ryan-roemer.github.io/ai-vs-the-law](https://ryan-roemer.github.io/ai-vs-the-law/)

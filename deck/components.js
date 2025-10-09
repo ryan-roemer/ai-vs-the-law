@@ -85,11 +85,21 @@ export const Template = ({ color = "#fff", slideNumber } = {}) => {
   `;
 };
 
+const MdNotes = ({ notes }) =>
+  !notes
+    ? null
+    : html`<${Notes}>
+  <${Markdown} className="notes">
+    ${notes}
+  </${Markdown}>
+</${Notes}>`;
+
 // Slide components
-export const JsSlide = ({ title, code }) => html`
+export const JsSlide = ({ title, code, notes }) => html`
   <${Slide}>
     <${Heading} fontSize="h3" style=${{ margin: "0" }}>${title}</${Heading}>
     <${CodePane} language="javascript" showLineNumbers=${true} >${code}</${CodePane}>
+    <${MdNotes} notes=${notes} />
   </${Slide}>
 `;
 
@@ -235,15 +245,7 @@ export const CaseSlide = ({ title, sections = [], notes }) => {
           })}
         </${Grid}>
       </${FlexBox}>
-      ${
-        notes
-          ? html`<${Notes}>
-        <${Markdown} className="notes">
-          ${notes}
-        </${Markdown}>
-      </${Notes}>`
-          : null
-      }
+      <${MdNotes} notes=${notes} />
     </${Slide}>
   `;
 };
