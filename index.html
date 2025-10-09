@@ -136,7 +136,7 @@
       const html = htm.bind(createElement);
 
       const examples = await getExamples();
-      const TASK_SLIDE = 39; // TODO: Programmatically find this???
+      const TASK_SLIDE = 40; // TODO: Programmatically find this???
       const deckUrl = (key, val) => {
         const url = new URL(window.location.href);
         url.search = "";
@@ -289,6 +289,11 @@
                 )}
               </${Grid}>
             </${FlexBox}>
+            <${Notes}>
+              <${Markdown} className="notes">
+                * **Survey**: Engineers? Lawyers? Both?
+              </${Markdown}>
+            </${Notes}>
           </${Slide}>
           <${MarkdownSlideSet} ...${animateListItems}>
             ${`
@@ -514,7 +519,7 @@
           />
 
           <${CaseSlide}
-            title="Bartz v. Anthropic (ND Cal)"
+            title="Kadrey v. Meta (ND Cal)"
             sections=${[
               {
                 title: "Facts",
@@ -564,7 +569,7 @@
               ---
               # Scraping
 
-              * _Reddit vs. Anthropic_ (ND Cal) ${iconArrow} Anthropic says it's not scraping, but Reddit says it is.
+              * _Reddit vs. Anthropic_ (ND Cal) ${iconArrow} non-copyright claims, licensing path
               * CloudFlare's AI [bot protections](https://blog.cloudflare.com/declaring-your-aindependence-block-ai-bots-scrapers-and-crawlers-with-a-single-click/)
               * [Really Simple Licensing (RSL)](https://rslstandard.org/): Reddit, Stack Overflow,
                 [Fastly](https://www.fastly.com/blog/control-and-monetize-your-content-with-the-rsl-standard), etc.
@@ -617,8 +622,8 @@
               ---
               # Infringement: Takeaways
 
-              * Developers have to be more careful with AI-generated code.
-              * Practical concerns and wrangling with AI-generated code.
+              * You do need to be careful with AI-generated code outputs.
+              * But there are guardrails at various levels.
             `}
           </${MarkdownSlideSet}>
           <${TopicSlide} backgroundUrl=${backgrounds.keys}>
@@ -739,6 +744,11 @@
           <${JsSlide} title="Example 3" code=${examples.copilot.code} />
           <${MarkdownSlideSet} ...${animateListItems}>
             ${`
+              --- { "layout": "center" }
+              # You guessed it...
+
+              Notes: Some of these examples are AI-generated.
+
               ---
               # Task Description
 
@@ -747,10 +757,10 @@
               \`\`\`
 
               ---
-              # A coding exercise!
+              # Human vs. AI code
 
-              * What are the differences between these?
-              * Extrapolate to larger pieces of code?
+              * What are the ${em("differences")} between these?
+              * Extrapolate to ${em("larger")} pieces of code?
 
               ---
               # Spec-driven development?
@@ -829,6 +839,8 @@
 
               <img src=${images.qrCode} width="200px" style="margin: 0 40px; margin-top: calc(25vh); border: 5px solid #fff;" />
 
+              Notes: \
+                Find me in the hall! Love to talk law, AI, code, and more. Stickers and t-shirts.
             `}
           </${MarkdownSlideSet}>
         </${Deck}>
