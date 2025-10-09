@@ -11,10 +11,10 @@ export const logosHtm = {
     style=${{ width: "0.9em", height: "0.9em", marginBottom: "-0.05em" }}
   />`,
   mofo: html`<img
-    src="/images/mofo-icon.png"
+    src="./images/mofo-icon.png"
     style=${{
-      width: "0.9em",
-      height: "0.9em",
+      width: "0.8em",
+      height: "0.8em",
       marginBottom: "-0.05em",
       backgroundColor: "#fff",
       border: "5px solid #fff",
