@@ -42,11 +42,11 @@ export const logos = Object.fromEntries(
 export const images = {
   // Relative to index.html
   qrCode: "./images/qr-code-ai-vs-law-square.svg",
+  spectacle: "./images/spectacle-banner.png",
   mofo: "https://www.mofo.com/_ipx/w_384,q_75/https%3A%2F%2Fmedia2.mofo.com%2Fv3%2Fimages%2Fblt5775cc69c999c255%2Fblt52856f2e1a73609c%2Fmofo-logo-2022.svg%3Fformat%3Dauto%26quality%3D60?url=https%3A%2F%2Fmedia2.mofo.com%2Fv3%2Fimages%2Fblt5775cc69c999c255%2Fblt52856f2e1a73609c%2Fmofo-logo-2022.svg%3Fformat%3Dauto%26quality%3D60&w=384&q=75",
 };
 
-const UNSPLASH_QUERY =
-  "q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+const UNSPLASH_QUERY = "q=80&w=1024&auto=format&fit=crop";
 
 export const backgrounds = {
   // Current
