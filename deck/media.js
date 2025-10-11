@@ -64,6 +64,7 @@ export const backgrounds = {
   fire2: `https://images.unsplash.com/photo-1517594422361-5eeb8ae275a9?${UNSPLASH_QUERY}`,
   danger: `https://images.unsplash.com/photo-1587065915399-8f8c714ab540?${UNSPLASH_QUERY}`,
   keys: `https://images.unsplash.com/photo-1631164159497-3a2408944c35?${UNSPLASH_QUERY}`,
+  oldComputer: `https://images.unsplash.com/photo-1561990975-6cfff5661206?${UNSPLASH_QUERY}`,
 
   // Previous
   vintageComputer: `https://images.unsplash.com/photo-1711346105258-bbb9136592d7?${UNSPLASH_QUERY}`,
