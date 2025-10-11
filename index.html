@@ -230,6 +230,16 @@
                 </${Link}>
               </${Text}>
             </${FlexBox}>
+            <${Notes}>
+              <${Markdown} className="notes">
+                ${`
+                  * ${em("Spectacle")} is a presentation library for React.
+                  * If you come find me later:
+                    * I've got ${em("stickers")} for Spectacle and our other open source projects.
+                    * ...and some ${em("t-shirts")}.
+                `}
+              </${Markdown}>
+            </${Notes}>
           </${Slide}>
           <${Slide} ...${animateListItems}>
             <${FlexBox} flexDirection="column" alignSelf="center" justifyContent="left" alignItems="left">
@@ -257,7 +267,17 @@
             </${FlexBox}>
             <${Notes}>
               <${Markdown} className="notes">
-                * MoFo respresents Anthropic (Bartz), OpenAI (In re OpenAI).
+                ${`
+                  MoFo
+                  * A totally real law firm.
+                  * That really is at \`mofo.com\`.
+                  * MoFo respresents Anthropic (Bartz), OpenAI (In re OpenAI).
+
+                  My interests:
+                  * ${em("Open source")}, IP and code.
+                  * As well as ${em("legal tech")}, especially in the AI space.
+                  * Would love to talk with folks after about any of this area!
+                `}
               </${Markdown}>
             </${Notes}>
           </${Slide}>
@@ -560,7 +580,7 @@
               * Llama training data. Pirated sources.
               * June 25: Fair use.
                 * (1) Transformative
-                * (4) No market harm
+                * (4) No market harm (insufficient evidence)
               * Limited to specific plaintiffs. Nod to _Bartz_
               * https://www.bakerlaw.com/kadrey-v-meta/
             `}
@@ -587,10 +607,11 @@
               ---
               # Inputs: Takeaways
 
-              * The courts are split on fair use and this is all going to evolve.
-              * The cautious course is to gather data without pirating.
-              * You don't need necessarily need permission, but we're seeing more paths and programs.
-
+              * The courts are ${em("split")} on fair use and this is all going to evolve.
+              * You don't need necessarily need permission.
+              * The cautious course is to gather data ${em("without pirating")}.
+              * Be wary of using data from a ${em("direct competitor")}.
+              * We're seeing more ${em("business")} and ${em("licensing")} solutions.
             `}
           </${MarkdownSlideSet}>
           <${TopicSlide} backgroundUrl=${backgrounds.oldComputer}>
