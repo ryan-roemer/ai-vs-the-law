@@ -171,16 +171,14 @@
                 zIndex: 1000,
               }}
             />
-            <${Notes}>
-              <${Markdown} className="notes">
-                ${`
-                  ...in case you're dreading the thought of just hearing about the law for the next 30 minutes...
-                  * I do have a quick coding exercise that you can start now.
-                  * Hit the QR code to go to the live slides,
-                  * And navigate to [slide ${TASK_SLIDE}](${TASK_SLIDE_URL}).
-                `}
-              </${Markdown}>
-            </${Notes}>
+           ${
+             "" /*
+            ...in case you're dreading the thought of just hearing about the law for the next 30 minutes...
+            * I do have a quick coding exercise that you can start now.
+            * Hit the QR code to go to the live slides,
+            * And navigate to [slide ${TASK_SLIDE}](${TASK_SLIDE_URL}).
+            */
+           }
           </${Slide}>
           <${Slide}
             backgroundImage="url(${backgrounds.chesapeakeBay})"
@@ -313,11 +311,6 @@
                 )}
               </${Grid}>
             </${FlexBox}>
-            <${Notes}>
-              <${Markdown} className="notes">
-                * **Survey**: Engineers? Lawyers? Both?
-              </${Markdown}>
-            </${Notes}>
           </${Slide}>
           <${MarkdownSlideSet} ...${animateListItems}>
             ${`
@@ -328,9 +321,6 @@
               * Raise awareness, ${em("not")} provide answers or advice
               * We'll talk about ${em("US")} law and computer ${em("code")}
               * Talk to your own legal team
-
-              Notes: \
-                Survey: Engineers? Lawyers? Both?
             `}
           </${MarkdownSlideSet}>
           <${TopicSlide} backgroundUrl=${backgrounds.gavelBook}>
